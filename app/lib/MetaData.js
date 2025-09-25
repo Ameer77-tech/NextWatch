@@ -10,7 +10,7 @@ export const metaData = {
     siteName: "NextWatch",
     images: [
       {
-        url: "/logo.png", // place logo in /public
+        url: "/favicon.png", 
         width: 800,
         height: 600,
         alt: "NextWatch Logo",
@@ -23,11 +23,11 @@ export const metaData = {
     card: "summary_large_image",
     title: "NextWatch - Movie Trailers & Info",
     description: "Explore trending movies and watch trailers instantly.",
-    images: ["/logo.png"],
+    images: ["/favicon.png"],
   },
   icons: {
-    icon: "/favicon.ico",
-    shortcut: "/favicon.ico",
-    apple: "/apple-touch-icon.png",
+    icon: "/favicon.png",
+    shortcut: "/favicon.png",
+    apple: "/favicon.png",
   },
 };
