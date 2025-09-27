@@ -5,7 +5,7 @@ import { JetBrainsMono } from "@/public/fonts/JetBrains";
 
 const Genre = () => {
   return (
-    <div className="genres px-5">
+    <div className="genres px-5 mt-5">
       <h1 className={`text-md font-semibold ${JetBrainsMono.className}`}>
         PICK YOUR FAVOURITE GENRE
       </h1>

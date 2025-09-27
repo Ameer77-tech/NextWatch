@@ -20,7 +20,6 @@ const Navbar = () => {
     } else {
       setscrollDown(false);
     }
-    console.log(scrollDown);
   });
   return (
     <>

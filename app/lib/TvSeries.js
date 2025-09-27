@@ -1,0 +1,88 @@
+// tvMockData.js
+
+export const tvSeries = [
+  {
+    id: 101,
+    name: "Stranger Things",
+    poster_path: "/strangerthings.jpg",
+    first_air_date: "2016-07-15",
+    vote_average: 8.7,
+  },
+  {
+    id: 102,
+    name: "The Boys",
+    poster_path: "/theboys.jpg",
+    first_air_date: "2019-07-26",
+    vote_average: 8.5,
+  },
+  {
+    id: 103,
+    name: "Breaking Bad",
+    poster_path: "/breakingbad.jpg",
+    first_air_date: "2008-01-20",
+    vote_average: 9.5,
+  },
+  {
+    id: 201,
+    name: "Chernobyl",
+    poster_path: "/chernobyl.jpg",
+    first_air_date: "2019-05-06",
+    vote_average: 9.4,
+  },
+  {
+    id: 202,
+    name: "Game of Thrones",
+    poster_path: "/got.jpg",
+    first_air_date: "2011-04-17",
+    vote_average: 9.2,
+  },
+  {
+    id: 203,
+    name: "Attack on Titan",
+    poster_path: "/aot.jpg",
+    first_air_date: "2013-04-07",
+    vote_average: 9.0,
+  },
+  {
+    id: 301,
+    name: "One Piece",
+    poster_path: "/onepiece.jpg",
+    first_air_date: "1999-10-20",
+    vote_average: 8.8,
+  },
+  {
+    id: 302,
+    name: "House of the Dragon",
+    poster_path: "/hotd.jpg",
+    first_air_date: "2022-08-21",
+    vote_average: 8.6,
+  },
+  {
+    id: 303,
+    name: "Loki",
+    poster_path: "/loki.jpg",
+    first_air_date: "2021-06-09",
+    vote_average: 8.3,
+  },
+  {
+    id: 401,
+    name: "Naruto Shippuden",
+    poster_path: "/naruto.jpg",
+    first_air_date: "2007-02-15",
+    vote_average: 8.6,
+  },
+  {
+    id: 402,
+    name: "Demon Slayer",
+    poster_path: "/demonslayer.jpg",
+    first_air_date: "2019-04-06",
+    vote_average: 8.7,
+  },
+  {
+    id: 403,
+    name: "Jujutsu Kaisen",
+    poster_path: "/jujutsu.jpg",
+    first_air_date: "2020-10-03",
+    vote_average: 8.8,
+  },
+];

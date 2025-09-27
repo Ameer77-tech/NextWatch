@@ -1,0 +1,40 @@
+"use client";
+import React from "react";
+import { motion } from "motion/react";
+import { topRatedMovies } from "@/app/lib/TopRated";
+import { useEffect, useRef, useState } from "react";
+import MovieCard from "./MovieCard";
+
+const Container = () => {
+  const containerRef = useRef(null);
+  const cardRef = useRef(null);
+  const [MaxDrag, setMaxDrag] = useState(0);
+  useEffect(() => {
+    if (cardRef.current && containerRef.current) {
+      const cardW = cardRef.current.offsetWidth + 20;
+      const containerW = containerRef.current.offsetWidth;
+      const totalCardsW = cardW * topRatedMovies.length;
+      const maxDragDistance = totalCardsW - containerW;
+      setMaxDrag(maxDragDistance > 0 ? maxDragDistance : 0);
+    }
+  }, []);
+  return (
+    <div className="topRatedCarousel overflow-x-hidden mt-5">
+      <motion.div
+        ref={containerRef}
+        drag="x"
+        dragConstraints={{
+          left: -MaxDrag,
+          right: 0,
+        }}
+        className="topRatedContainer gap-4 flex"
+      >
+        {topRatedMovies.map((movie) => (
+          <MovieCard key={movie.id} cardRef={cardRef} title={movie.title} />
+        ))}
+      </motion.div>
+    </div>
+  );
+};
+
+export default Container;
