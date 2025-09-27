@@ -1,0 +1,42 @@
+export const trendingMovies = [
+  {
+    id: 1,
+    title: "Evil Dead Rise",
+    language: "English",
+    formats: ["2D", "3D", "4DX"],
+    genre: "Horror",
+    trending: true,
+  },
+  {
+    id: 2,
+    title: "Interstellar 2",
+    language: "English",
+    formats: ["2D", "IMAX"],
+    genre: "Sci-Fi",
+    trending: true,
+  },
+  {
+    id: 3,
+    title: "RRR: Legacy",
+    language: "Telugu",
+    formats: ["2D", "3D"],
+    genre: "Action",
+    trending: true,
+  },
+  {
+    id: 4,
+    title: "The Silent Shadows",
+    language: "Hindi",
+    formats: ["2D"],
+    genre: "Thriller",
+    trending: true,
+  },
+  {
+    id: 5,
+    title: "Frozen Kingdom",
+    language: "English",
+    formats: ["2D", "3D"],
+    genre: "Fantasy",
+    trending: true,
+  },
+];

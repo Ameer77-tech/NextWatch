@@ -74,9 +74,9 @@
   --ring: #EB2F3D;
 
   /* Optional linear (placeholder, both same now) */
-  --linear-1: #939392;
-  --linear-2: #939392;
-
+  --linear-1: #323232;
+  --linear-2: #767676;
+  --linear-3: #363535;
   --radius: 0.625rem;
 }
 
@@ -122,11 +122,12 @@
   }
 }
 
-h1{
-  @apply text-2xl;
-}
-
 .navbar{
-  @apply fixed top-5 left-1/2 -translate-x-1/2 md:w-3/4 w-full h-16 flex justify-between items-center px-4 z-50 bg-transparent backdrop-blur-xl text-accent;
+  @apply fixed top-0 left-1/2 -translate-x-1/2 md:w-3/4 w-full flex justify-between items-center px-4 py-5 z-50 bg-background backdrop-blur-xl text-accent;
 }
-
+.carousel{
+  @apply mt-[96px] relative min-w-screen h-[400px] flex justify-center overflow-x-hidden;
+}
+.cardsContainer{
+  @apply flex w-full relative;
+}
