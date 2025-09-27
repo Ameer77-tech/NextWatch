@@ -123,11 +123,14 @@
 }
 
 .navbar{
-  @apply fixed top-0 left-1/2 -translate-x-1/2 md:w-3/4 w-full flex justify-between items-center px-4 py-5 z-50 bg-background backdrop-blur-xl text-accent;
+  @apply fixed top-0 left-1/2 -translate-x-1/2 md:w-3/4 w-full flex justify-between items-center px-4 py-5 z-100 bg-background backdrop-blur-xl text-accent;
 }
 .carousel{
   @apply mt-[96px] relative min-w-screen h-[400px] flex justify-center overflow-x-hidden;
 }
 .cardsContainer{
-  @apply flex w-full relative;
+  @apply flex relative;
+}
+.genre{
+  background: linear-gradient(90deg, var(--linear-1), var(--linear-2));
 }
