@@ -123,14 +123,20 @@
 }
 
 .navbar{
-  @apply fixed top-0 left-1/2 -translate-x-1/2 md:w-3/4 w-full flex justify-between items-center px-4 py-5 z-100 bg-background backdrop-blur-xl text-accent;
+  @apply md:hidden lg:hidden fixed top-0 left-1/2 bg-transparent backdrop-blur-xs -translate-x-1/2 md:w-3/4 w-full flex justify-between items-center px-4 py-5 z-100 text-accent;
+}
+.pcNav{
+  @apply hidden md:w-full z-100 md:flex md:fixed top-0 left-0 lg:flex md:h-25 md:px-20 md:justify-between md:items-center bg-transparent backdrop-blur-xl;
 }
 .carousel{
-  @apply mt-[96px] relative min-w-screen h-[400px] flex justify-center overflow-x-hidden;
+  @apply mt-[96px] md:hidden lg:hidden md:mt-25 relative min-w-screen h-[400px] flex justify-center overflow-x-hidden;
 }
 .cardsContainer{
-  @apply flex relative;
+  @apply flex relative md:hidden lg:hidden;
 }
 .genre{
   background: linear-gradient(90deg, var(--linear-1), var(--linear-2));
+}
+*::-webkit-scrollbar {
+  display: none;
 }

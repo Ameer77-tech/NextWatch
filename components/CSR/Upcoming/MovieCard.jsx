@@ -6,7 +6,7 @@ const MovieCard = ({ cardRef, title }) => {
   return (
     <div
       ref={cardRef}
-      className="bg-slate-500 rounded-lg min-w-35 min-h-50 relative"
+      className="bg-slate-500 rounded-lg min-w-35 md:min-w-60 min-h-50 md:min-h-70 relative"
     >
       <Image
         src={mockImage}

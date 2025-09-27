@@ -24,21 +24,24 @@ const CardsContainer = () => {
     animate(x, nearest);
   };
   return (
-    <motion.div
-      onDragEnd={handleDragEnd}
-      style={{ x }}
-      drag="x"
-      dragConstraints={{
-        left: -MaxDrag,
-        right: 0,
-      }}
-      ref={containerRef}
-      className="cardsContainer"
-    >
-      {trendingMovies.map((movie) => (
-        <Card key={movie.id} CardRef={CardRef} />
-      ))}
-    </motion.div>
+    <>
+      <motion.div
+        onDragEnd={handleDragEnd}
+        style={{ x }}
+        drag="x"
+        dragConstraints={{
+          left: -MaxDrag,
+          right: 0,
+        }}
+        ref={containerRef}
+        className="cardsContainer"
+      >
+        {trendingMovies.map((movie) => (
+          <Card key={movie.id} CardRef={CardRef} />
+        ))}
+      </motion.div>
+      
+    </>
   );
 };
 

@@ -6,7 +6,7 @@ const Logo = () => {
   return (
     <div className="nav-start flex items-center">
       <Image src="/favicon.png" alt="logo" width={50} height={50} />
-      <h1 className={`${JetBrainsMono.className} text-2xl`}>NextWatch</h1>
+      <h1 className={`${JetBrainsMono.className} text-2xl md:text-3xl md:text-accent`}>NextWatch</h1>
     </div>
   );
 };

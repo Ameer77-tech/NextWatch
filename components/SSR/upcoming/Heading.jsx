@@ -6,7 +6,7 @@ import { ArrowRight } from "lucide-react";
 const Heading = () => {
   return (
     <div className="flex justify-between items-center">
-      <h1 className={`text-md font-semibold ${JetBrainsMono.className}`}>
+      <h1 className={`text-md md:text-2xl font-semibold ${JetBrainsMono.className}`}>
         Upcoming
       </h1>
       <div className="flex items-center">

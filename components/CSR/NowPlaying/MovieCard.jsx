@@ -6,7 +6,7 @@ const MovieCard = ({ cardRef, title }) => {
   return (
     <div
       ref={cardRef}
-      className="bg-slate-500 rounded-lg min-w-35 min-h-50 relative"
+      className="bg-slate-500 rounded-lg min-w-35 md:min-w-60 min-h-50 md:min-h-70 relative"
     >
       <Image
         src={mockImage}
@@ -14,7 +14,7 @@ const MovieCard = ({ cardRef, title }) => {
         fill
         className="rounded-lg object-cover"
       />
-      <p className="absolute bottom-2 text-white opacity-100 font-semibold text-sm text-center left-1/2 -translate-x-1/2 w-full">
+      <p className="md:text-lg absolute bottom-2 text-white opacity-100 font-semibold text-sm text-center left-1/2 -translate-x-1/2 w-full">
         {title}
       </p>
     </div>
