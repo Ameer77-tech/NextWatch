@@ -5,7 +5,7 @@ import Arrows from "./Arrows";
 
 const NowPlaying = () => {
   return (
-    <div className="p-5 md:p-10 relative">
+    <div className="p-5 md:p-20 relative">
       <Heading />
       <Container />
       <Arrows />

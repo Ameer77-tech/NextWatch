@@ -6,6 +6,7 @@ export const trendingMovies = [
     formats: ["2D", "3D", "4DX"],
     genre: "Horror",
     trending: true,
+    poster: "/mock.jpg",
   },
   {
     id: 2,
@@ -14,6 +15,7 @@ export const trendingMovies = [
     formats: ["2D", "IMAX"],
     genre: "Sci-Fi",
     trending: true,
+    poster: "/poster.jpg",
   },
   {
     id: 3,
@@ -22,6 +24,7 @@ export const trendingMovies = [
     formats: ["2D", "3D"],
     genre: "Action",
     trending: true,
+    poster: "/poster.jpg",
   },
   {
     id: 4,
@@ -30,6 +33,7 @@ export const trendingMovies = [
     formats: ["2D"],
     genre: "Thriller",
     trending: true,
+    poster: "/poster.jpg",
   },
   {
     id: 5,
@@ -38,5 +42,6 @@ export const trendingMovies = [
     formats: ["2D", "3D"],
     genre: "Fantasy",
     trending: true,
+    poster: "/poster.jpg",
   },
 ];

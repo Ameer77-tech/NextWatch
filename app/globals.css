@@ -117,8 +117,8 @@
   * {
     @apply border-border outline-ring/50;
   }
-  body {
-    @apply bg-background text-foreground;
+  body, html {
+    @apply bg-background text-foreground overflow-x-hidden;
   }
 }
 
@@ -126,7 +126,7 @@
   @apply md:hidden lg:hidden fixed top-0 left-1/2 bg-transparent backdrop-blur-xs -translate-x-1/2 md:w-3/4 w-full flex justify-between items-center px-4 py-5 z-100 text-accent;
 }
 .pcNav{
-  @apply hidden md:w-full z-100 md:flex md:fixed top-0 left-0 lg:flex md:h-25 md:px-20 md:justify-between md:items-center bg-transparent backdrop-blur-xl;
+  @apply hidden md:w-full z-100 md:flex md:fixed top-0 left-0 lg:flex md:h-25 md:px-20 md:justify-between md:items-center;
 }
 .carousel{
   @apply mt-[96px] md:hidden lg:hidden md:mt-25 relative min-w-screen h-[400px] flex justify-center overflow-x-hidden;

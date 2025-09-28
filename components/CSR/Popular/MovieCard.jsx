@@ -1,5 +1,5 @@
 import React from "react";
-import mockImage from "@/app/assets/mock.jpg";
+import mockImage from "@/app/assets/poster.jpg";
 import Image from "next/image";
 
 const MovieCard = ({ cardRef, title }) => {
@@ -14,7 +14,7 @@ const MovieCard = ({ cardRef, title }) => {
         fill
         className="rounded-lg object-cover"
       />
-      <p className="absolute bottom-2 text-white opacity-100 font-semibold text-sm text-center left-1/2 -translate-x-1/2 w-full">
+      <p className="absolute shadow-black shadow-2xl bottom-2 text-white opacity-100 font-semibold text-sm text-center left-1/2 -translate-x-1/2 w-full">
         {title}
       </p>
     </div>

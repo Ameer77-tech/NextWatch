@@ -64,7 +64,7 @@ const Navbar = () => {
                 damping: 40,
               },
             }}
-            className="navbar"
+            className={clsx("navbar")}
           >
             <Logo />
             <div className="nav-end flex gap-3 items-center md:hidden lg:hidden">
@@ -99,7 +99,7 @@ const Navbar = () => {
                 damping: 40,
               },
             }}
-            className="pcNav"
+            className="pcNav bg-background/60 backdrop-blur-md"
           >
             <Logo />
             <div className="nav-end gap-3 items-center hidden md:flex lg:flex">
