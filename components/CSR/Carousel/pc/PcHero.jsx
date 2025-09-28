@@ -9,19 +9,6 @@ import { motion } from "motion/react";
 
 const PcHero = () => {
   const [slideIndex, setslideIndex] = useState(0);
-  // useEffect(() => {
-  //   const interval = setInterval(() => {
-  //     if(slideIndex == trendingMovies.length - 1){
-  //       slideIndex(0)
-  //     }else{
-  //       setslideIndex(prev => prev + 1)
-  //     }
-  //   }, 5000);
-  //   return ()=>
-  //     clearInterval(interval)
-
-  // }, [])
-
   const handleNext = () => {
     if (slideIndex == trendingMovies.length - 1) {
       setslideIndex(0);

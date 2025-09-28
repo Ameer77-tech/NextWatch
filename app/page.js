@@ -1,3 +1,4 @@
+import HomeInitializer from "@/components/contextIntial/HomeInitializer";
 import Footer from "@/components/Footer";
 import Genre from "@/components/Genre";
 import Hero from "@/components/Hero";
@@ -7,11 +8,82 @@ import Popular from "@/components/Popular";
 import TopRated from "@/components/TopRated";
 import TvSeries from "@/components/TvSeries";
 import Upcoming from "@/components/Upcoming";
-import React from "react";
 
-const page = () => {
+const TMDB_KEY = process.env.TMDB_API_KEY;
+const TMDB_URL = "https://api.themoviedb.org";
+
+const getHomeData = async () => {
+  const key = process.env.TMDB_API_KEY;
+  const url = process.env.TMDB_URL;
+
+  const options = {
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${key}`,
+    },
+    next: { revalidate: 3600 }, // ISR caching
+  };
+
+  try {
+    const [Trending, NowPlaying, Popular, TopRated, TvSeries, Upcoming] =
+      await Promise.all([
+        fetch(`${url}/3/trending/all/day?language=en-US&page=1`, options).then(
+          (r) => r.json()
+        ),
+        fetch(`${url}/3/movie/now_playing?language=en-US&page=1`, options).then(
+          (r) => r.json()
+        ),
+        fetch(`${url}/3/movie/popular?language=en-US&page=1`, options).then(
+          (r) => r.json()
+        ),
+        fetch(`${url}/3/movie/top_rated?language=en-US&page=1`, options).then(
+          (r) => r.json()
+        ),
+        fetch(`${url}/3/tv/popular?language=en-US&page=1`, options).then((r) =>
+          r.json()
+        ),
+        fetch(`${url}/3/movie/upcoming?language=en-US&page=1`, options).then(
+          (r) => r.json()
+        ),
+      ]);
+
+    const topTrending = (Trending?.results || [])
+      .sort((a, b) => b.popularity - a.popularity)
+      .slice(0, 5);
+    const topNowPlaying = (NowPlaying?.results || []).slice(0, 10);
+    const topPopular = (Popular?.results || []).slice(0, 10);
+    const topRated = (TopRated?.results || []).slice(0, 10);
+    const topTvSeries = (TvSeries?.results || []).slice(0, 10);
+    const topUpcoming = (Upcoming?.results || []).slice(0, 10);
+
+    return {
+      Trending: topTrending,
+      NowPlaying: topNowPlaying,
+      Popular: topPopular,
+      TopRated: topRated,
+      TvSeries: topTvSeries,
+      Upcoming: topUpcoming,
+    };
+  } catch (err) {
+    console.error("Failed to fetch home data:", err);
+    return {
+      Trending: [],
+      NowPlaying: [],
+      Popular: [],
+      TopRated: [],
+      TvSeries: [],
+      Upcoming: [],
+    };
+  }
+};
+
+const Page = async () => {
+  const homeData = await getHomeData();
+
   return (
     <div className="min-h-screen min-w-screen flex flex-col">
+      <HomeInitializer data={homeData} />
       <Navbar />
       <Hero />
       <NowPlaying />
@@ -25,4 +97,4 @@ const page = () => {
   );
 };
 
-export default page;
+export default Page;
