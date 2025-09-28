@@ -2,12 +2,13 @@
 import { create } from "zustand";
 
 export const useHomeData = create((set) => ({
-  trending: [],
-  nowPlaying: [],
-  popular: [],
-  topRated: [],
-  tvSeries: [],
+  Trending: [],
+  NowPlaying: [],
+  Popular: [],
+  TopRated: [],
+  TvSeries: [],
   genres: [],
-  upcoming: [],
+  Upcoming: [],
+  loading : true,
   setHomeData: (data) => set((state) => ({ ...state, ...data })),
 }));

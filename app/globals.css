@@ -129,10 +129,10 @@
   @apply hidden md:w-full z-100 md:flex md:fixed top-0 left-0 lg:flex md:h-25 md:px-20 md:justify-between md:items-center;
 }
 .carousel{
-  @apply mt-[96px] md:hidden lg:hidden md:mt-25 relative min-w-screen h-[400px] flex justify-center overflow-x-hidden;
+  @apply mt-[96px] md:hidden lg:hidden md:mt-25 relative min-w-screen h-[400px] overflow-x-hidden;
 }
 .cardsContainer{
-  @apply flex relative md:hidden lg:hidden;
+  @apply flex relative md:hidden lg:hidden w-full h-full;
 }
 .genre{
   background: linear-gradient(90deg, var(--linear-1), var(--linear-2));

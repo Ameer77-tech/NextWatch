@@ -1,92 +1,108 @@
 "use client";
-import React, { useEffect, useRef, useState } from "react";
-import { trendingMovies } from "@/app/lib/TrendingMock";
-import Arrows from "@/components/Arrows";
-import poster from "@/app/assets/poster.jpg";
-import mock from "@/app/assets/mock.jpg";
+import React, { useState } from "react";
+import { motion, AnimatePresence } from "motion/react";
 import Image from "next/image";
-import { motion } from "motion/react";
+import Arrows from "@/components/Arrows";
+import { useHomeData } from "@/contexts/HomeData";
 
 const PcHero = () => {
-  const [slideIndex, setslideIndex] = useState(0);
+  const trending = useHomeData((s) => s.Trending) || [];
+  const [slideIndex, setSlideIndex] = useState(0);
+
+  if (!trending.length) return null; // avoid errors if empty
+
   const handleNext = () => {
-    if (slideIndex == trendingMovies.length - 1) {
-      setslideIndex(0);
-    } else {
-      setslideIndex((prev) => prev + 1);
-    }
+    setSlideIndex((prev) => (prev === trending.length - 1 ? 0 : prev + 1));
   };
+
   const handlePrev = () => {
-    if (slideIndex == 0) {
-      setslideIndex(trendingMovies.length - 1);
-    } else {
-      setslideIndex((prev) => prev - 1);
-    }
+    setSlideIndex((prev) => (prev === 0 ? trending.length - 1 : prev - 1));
   };
+
+  const posterVariants = {
+    initial: { scale: 0 },
+    animate: { scale: 1 },
+  };
+
   return (
     <div className="hidden md:block relative">
-      {/* Horizontal scroll of videos */}
+      {/* Horizontal scroll (background images) */}
       <motion.div
-        animate={{
-          x: `-${slideIndex * 100}%`,
-          transition: {
-            duration: 0.3,
-            ease: "linear",
-          },
-        }}
-        className="flex md:min-h-[400px] relative"
+        animate={{ x: `-${slideIndex * 100}%` }}
+        transition={{ duration: 0.3, ease: "linear" }}
+        className="flex md:min-h-screen relative"
       >
-        {trendingMovies.map((movie) => (
-          <motion.div className="flex-shrink-0 w-full h-screen" key={movie.id}>
+        {trending.map((movie) => (
+          <div className="flex-shrink-0 w-full min-h-screen" key={movie.id}>
             <div className="relative w-full h-full">
               <Image
-                src={movie.poster}
+                src={`https://image.tmdb.org/t/p/original${movie.backdrop_path}`}
                 fill
-                alt="poster"
-                className="object-center object-cover w-full h-full"
+                alt={movie.title || movie.name || "Poster"}
+                className="object-cover w-full h-full"
               />
             </div>
-          </motion.div>
+          </div>
         ))}
       </motion.div>
 
-      {/* Hero overlay (centered over container) */}
-      <div className="absolute inset-0 flex flex-col justify-center text-white bg-black/70 p-6 md:p-20">
-        <h1 className="text-3xl md:text-5xl font-bold mb-2">
-          {trendingMovies[slideIndex].title}
-        </h1>
-        <p className="text-sm md:text-lg max-w-xl mb-4">
-          Jake Sully and Neytiri lead the Na'vi against a new threat to their
-          world.
-        </p>
-        <div className="flex flex-wrap  items-center gap-2 mb-4">
-          <div className="inline-flex items-center px-2 py-1 rounded bg-gray-700 text-sm">
-            Action
+      {/* Hero overlay */}
+      <div className="absolute inset-0 flex h-full items-center gap-30 text-white bg-black/70 p-6 md:p-20">
+        <div>
+          <h1 className="text-3xl md:text-5xl font-bold mb-2">
+            {trending[slideIndex]?.name || trending[slideIndex]?.title}
+          </h1>
+          <p className="text-sm md:text-lg max-w-xl mb-4">
+            {trending[slideIndex]?.overview}
+          </p>
+          <div className="flex flex-wrap items-center gap-2 mb-4">
+            <div className="inline-flex items-center px-2 py-1 rounded bg-gray-700 text-sm">
+              Action
+            </div>
+            <div className="inline-flex items-center px-2 py-1 rounded bg-gray-700 text-sm">
+              Adventure
+            </div>
+            <div className="inline-flex items-center px-2 py-1 rounded bg-gray-700 text-sm">
+              Sci-Fi
+            </div>
+            <div className="inline-flex items-center px-2 py-1 rounded bg-red-600 text-sm">
+              ⭐ 8.2
+            </div>
+            <div className="inline-flex items-center px-2 py-1 rounded border border-white text-sm">
+              2022
+            </div>
           </div>
-          <div className="inline-flex items-center px-2 py-1 rounded bg-gray-700 text-sm">
-            Adventure
-          </div>
-          <div className="inline-flex items-center px-2 py-1 rounded bg-gray-700 text-sm">
-            Sci-Fi
-          </div>
-          <div className="inline-flex items-center px-2 py-1 rounded bg-red-600 text-sm">
-            ⭐ 8.2
-          </div>
-          <div className="inline-flex items-center px-2 py-1 rounded border border-white text-sm">
-            2022
+          <div className="flex gap-4">
+            <button className="bg-red-600 px-4 py-2 rounded font-semibold hover:bg-red-700">
+              Play Trailer
+            </button>
+            <button className="bg-white text-black px-4 py-2 rounded hover:bg-gray-200">
+              More Info
+            </button>
           </div>
         </div>
-        <div className="flex gap-4">
-          <button className="bg-red-600 px-4 py-2 rounded font-semibold hover:bg-red-700">
-            Play Trailer
-          </button>
-          <button className="bg-white text-black px-4 py-2 rounded hover:bg-gray-200">
-            More Info
-          </button>
-        </div>
+
+        {/* Poster animation */}
+        <AnimatePresence mode="wait">
+          <motion.div
+            key={slideIndex}
+            variants={posterVariants}
+            initial="initial"
+            animate="animate"
+            transition={{ duration: 0.4, ease: "easeInOut" }}
+            className="h-3/6 w-50 rounded-2xl relative"
+          >
+            <Image
+              src={`https://image.tmdb.org/t/p/original${trending[slideIndex]?.poster_path}`}
+              fill
+              alt={trending[slideIndex]?.title || trending[slideIndex]?.name}
+              className="rounded-2xl"
+            />
+          </motion.div>
+        </AnimatePresence>
       </div>
 
-      {/* Arrows component */}
+      {/* Arrows */}
       <Arrows handleNext={handleNext} handlePrev={handlePrev} />
     </div>
   );

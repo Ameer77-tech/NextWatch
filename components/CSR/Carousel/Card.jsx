@@ -6,16 +6,19 @@ import { Button } from "@/components/ui/button";
 import { Info } from "lucide-react";
 
 const Card = ({ CardRef, movie }) => {
-  console.log(movie);
-
   return (
-    <div ref={CardRef} className="card flex-shrink-0 p-5 relative">
+    <div ref={CardRef} className="card flex-shrink-0 w-full relative">
       <Image
-        src={mockImage}
-        alt="IMAGE"
-        className="h-[279px] w-[355px] rounded-[50px]"
+        src={
+          movie?.poster_path
+            ? `https://image.tmdb.org/t/p/original${movie.poster_path}`
+            : mockImage
+        }
+        alt={movie?.title || "Poster"}
+        fill
+        className="rounded-[50px] object-cover h-full"
       />
-      <div className="absolute right-5 bottom-3/7">
+      <div className="absolute right-5 bottom-[30%]">
         <Button variant="secondary" className="px-3 scale-75 text-xs">
           More Info <Info />
         </Button>

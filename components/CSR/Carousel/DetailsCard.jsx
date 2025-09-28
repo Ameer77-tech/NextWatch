@@ -5,7 +5,7 @@ import { Button } from "../../ui/button";
 
 const DetailsCard = () => {
   return (
-    <div className="bg-secondary px-5 py-2 z-90 absolute bottom-10 w-5/6 h-[130px] rounded-4xl flex flex-col justify-center">
+    <div className="bg-secondary px-5 py-2 z-90 absolute bottom-10 left-1/2 -translate-x-1/2 w-5/6 h-[130px] rounded-4xl flex flex-col justify-center">
       <p className="text-xs tracking-wide opacity-80">TRENDING</p>
       <h1 className="text-md">Demon Slayer</h1>
       <p>

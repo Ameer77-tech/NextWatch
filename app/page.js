@@ -8,6 +8,7 @@ import Popular from "@/components/Popular";
 import TopRated from "@/components/TopRated";
 import TvSeries from "@/components/TvSeries";
 import Upcoming from "@/components/Upcoming";
+import { Suspense } from "react";
 
 const TMDB_KEY = process.env.TMDB_API_KEY;
 const TMDB_URL = "https://api.themoviedb.org";
@@ -85,14 +86,16 @@ const Page = async () => {
     <div className="min-h-screen min-w-screen flex flex-col">
       <HomeInitializer data={homeData} />
       <Navbar />
-      <Hero />
-      <NowPlaying />
-      <Popular />
-      <TopRated />
-      <TvSeries />
-      <Genre />
-      <Upcoming />
-      <Footer />
+      <Suspense fallback={<p>LOADING..........</p>}>
+        <Hero />
+        <NowPlaying />
+        <Popular />
+        <TopRated />
+        <TvSeries />
+        <Genre />
+        <Upcoming />
+        <Footer />
+      </Suspense>
     </div>
   );
 };
