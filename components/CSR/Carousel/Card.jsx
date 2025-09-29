@@ -18,7 +18,7 @@ const Card = ({ movie }) => {
         fill
         className="rounded-[50px] object-cover h-full"
       />
-      <div className="absolute right-5 bottom-[30%]">
+      <div className="absolute right-5 bottom-[40%]">
         <Button variant="secondary" className="px-3 scale-75 text-xs">
           More Info <Info />
         </Button>

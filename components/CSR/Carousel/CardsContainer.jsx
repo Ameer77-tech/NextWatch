@@ -2,10 +2,9 @@
 import React, { useEffect, useState } from "react";
 import { motion } from "motion/react";
 import Card from "./Card";
+import { Skeleton } from "@/components/ui/skeleton";
 
 const CardsContainer = ({ slideIndex, setSlideIndex, Trending }) => {
- 
-
   useEffect(() => {
     const interval = setInterval(() => {
       setSlideIndex((prev) => (prev === Trending.length - 1 ? 0 : prev + 1));
@@ -16,8 +15,16 @@ const CardsContainer = ({ slideIndex, setSlideIndex, Trending }) => {
     };
   }, [Trending.length]);
 
-
-  if (!Trending || Trending.length === 0) return <div>Loading cards...</div>;
+  if (!Trending || Trending.length === 0)
+    return (
+      <div className="cardsContainer flex flex-col space-y-3 z-100">
+        <Skeleton className="h-full w-full rounded-xl" />
+        <div className="space-y-2 ">
+          <Skeleton className="h-4 w-full" />
+          <Skeleton className="h-4 w-full"></Skeleton>
+        </div>
+      </div>
+    );
 
   return (
     <motion.div
@@ -26,7 +33,7 @@ const CardsContainer = ({ slideIndex, setSlideIndex, Trending }) => {
         x: `-${slideIndex * 100}%`,
       }}
       transition={{
-        type : "tween"
+        type: "tween",
       }}
       whileTap={{ cursor: "grabbing" }}
     >

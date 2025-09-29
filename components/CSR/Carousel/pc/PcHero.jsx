@@ -4,6 +4,7 @@ import { motion, AnimatePresence } from "motion/react";
 import Image from "next/image";
 import Arrows from "@/components/Arrows";
 import { useHomeData } from "@/contexts/HomeData";
+import { Skeleton } from "@/components/ui/skeleton";
 
 const PcHero = () => {
   const trending = useHomeData((s) => s.Trending) || [];
@@ -26,11 +27,21 @@ const PcHero = () => {
   const handlePrev = () => {
     setSlideIndex((prev) => (prev === 0 ? trending.length - 1 : prev - 1));
   };
-  if (!trending.length) return null;
+
   const posterVariants = {
     initial: { scale: 0 },
     animate: { scale: 1 },
   };
+  if (!trending || trending.length === 0)
+    return (
+      <div className="hidden md:flex flex-col space-y-3 z-100">
+        <Skeleton className="h-100 w-full rounded-xl" />
+        <div className="space-y-2 ">
+          <Skeleton className="h-4 w-full" />
+          <Skeleton className="h-4 w-full"></Skeleton>
+        </div>
+      </div>
+    );
 
   return (
     <div className="hidden md:block relative">

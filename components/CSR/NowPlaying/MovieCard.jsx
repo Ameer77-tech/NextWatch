@@ -1,23 +1,51 @@
 import React from "react";
 import mockImage from "@/app/assets/mock.jpg";
 import Image from "next/image";
+import { motion } from "motion/react";
 
-const MovieCard = ({ cardRef, title }) => {
+const MovieCard = ({ cardRef, movie }) => {
+
+  const cardVariants = {
+    hidden: {
+      opacity: 0,
+      x: 40,
+    },
+    visible: {
+      opacity: 1,
+      x: 0,
+      transition: {
+        type: "spring",
+        stiffness: 90,
+        damping: 20,
+      },
+    },
+  };
+
   return (
-    <div
+    <motion.div
       ref={cardRef}
-      className="bg-slate-500 rounded-lg min-w-35 md:min-w-60 min-h-50 md:min-h-70 relative"
+      className="relative flex flex-col"
+      variants={cardVariants} 
     >
-      <Image
-        src={mockImage}
-        alt="image"
-        fill
-        className="rounded-lg object-cover"
-      />
-      <p className="md:text-lg absolute bottom-2 text-white opacity-100 font-semibold text-sm text-center left-1/2 -translate-x-1/2 w-full">
-        {title}
-      </p>
-    </div>
+      <div className="bg-slate-500 rounded-t-lg min-w-35 md:min-w-60 min-h-50 md:min-h-70 relative">
+        <Image
+          src={
+            movie?.poster_path
+              ? `https://image.tmdb.org/t/p/original${movie.poster_path}`
+              : mockImage
+          }
+          alt="image"
+          fill
+          className="rounded-t-lg object-cover"
+        />
+      </div>
+      <div className="h-20 w-full bg-secondary flex flex-col justify-evenly p-1">
+        <h1 className="text-sm overflow-scroll h-1/2">
+          {movie?.name || movie?.title}
+        </h1>
+        <p className="text-xs opacity-75">⭐ 7.8</p>
+      </div>
+    </motion.div>
   );
 };
 
