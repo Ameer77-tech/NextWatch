@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "motion/react";
 import Image from "next/image";
 import Arrows from "@/components/Arrows";
@@ -9,7 +9,15 @@ const PcHero = () => {
   const trending = useHomeData((s) => s.Trending) || [];
   const [slideIndex, setSlideIndex] = useState(0);
 
-  if (!trending.length) return null; // avoid errors if empty
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setSlideIndex((prev) => (prev === trending.length - 1 ? 0 : prev + 1));
+    }, 6000);
+
+    return () => {
+      clearInterval(interval);
+    };
+  }, [trending.length]);
 
   const handleNext = () => {
     setSlideIndex((prev) => (prev === trending.length - 1 ? 0 : prev + 1));
@@ -18,7 +26,7 @@ const PcHero = () => {
   const handlePrev = () => {
     setSlideIndex((prev) => (prev === 0 ? trending.length - 1 : prev - 1));
   };
-
+  if (!trending.length) return null;
   const posterVariants = {
     initial: { scale: 0 },
     animate: { scale: 1 },
@@ -26,10 +34,9 @@ const PcHero = () => {
 
   return (
     <div className="hidden md:block relative">
-      {/* Horizontal scroll (background images) */}
       <motion.div
         animate={{ x: `-${slideIndex * 100}%` }}
-        transition={{ duration: 0.3, ease: "linear" }}
+        transition={{ type: "tween" }}
         className="flex md:min-h-screen relative"
       >
         {trending.map((movie) => (
@@ -56,20 +63,22 @@ const PcHero = () => {
             {trending[slideIndex]?.overview}
           </p>
           <div className="flex flex-wrap items-center gap-2 mb-4">
-            <div className="inline-flex items-center px-2 py-1 rounded bg-gray-700 text-sm">
-              Action
-            </div>
-            <div className="inline-flex items-center px-2 py-1 rounded bg-gray-700 text-sm">
-              Adventure
-            </div>
-            <div className="inline-flex items-center px-2 py-1 rounded bg-gray-700 text-sm">
-              Sci-Fi
-            </div>
+            {trending[slideIndex].genres.map((genre, idx) => (
+              <div
+                key={idx}
+                className="inline-flex items-center px-2 py-1 rounded bg-gray-700 text-sm"
+              >
+                {genre}
+              </div>
+            ))}
             <div className="inline-flex items-center px-2 py-1 rounded bg-red-600 text-sm">
-              ⭐ 8.2
+              ⭐ {trending[slideIndex]?.vote_average.toFixed(1)}
             </div>
             <div className="inline-flex items-center px-2 py-1 rounded border border-white text-sm">
-              2022
+              {new Date(
+                trending[slideIndex]?.release_date ||
+                  trending[slideIndex]?.first_air_date
+              ).getFullYear()}
             </div>
           </div>
           <div className="flex gap-4">
@@ -81,8 +90,6 @@ const PcHero = () => {
             </button>
           </div>
         </div>
-
-        {/* Poster animation */}
         <AnimatePresence mode="wait">
           <motion.div
             key={slideIndex}

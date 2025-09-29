@@ -5,9 +5,9 @@ import mockImage from "@/app/assets/mock.jpg";
 import { Button } from "@/components/ui/button";
 import { Info } from "lucide-react";
 
-const Card = ({ CardRef, movie }) => {
+const Card = ({ movie }) => {
   return (
-    <div ref={CardRef} className="card flex-shrink-0 w-full relative">
+    <div className="card flex-shrink-0 w-full relative">
       <Image
         src={
           movie?.poster_path

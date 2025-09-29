@@ -27,31 +27,56 @@ const getHomeData = async () => {
   };
 
   try {
-    const [Trending, NowPlaying, Popular, TopRated, TvSeries, Upcoming] =
-      await Promise.all([
-        fetch(`${url}/3/trending/all/day?language=en-US&page=1`, options).then(
-          (r) => r.json()
-        ),
-        fetch(`${url}/3/movie/now_playing?language=en-US&page=1`, options).then(
-          (r) => r.json()
-        ),
-        fetch(`${url}/3/movie/popular?language=en-US&page=1`, options).then(
-          (r) => r.json()
-        ),
-        fetch(`${url}/3/movie/top_rated?language=en-US&page=1`, options).then(
-          (r) => r.json()
-        ),
-        fetch(`${url}/3/tv/popular?language=en-US&page=1`, options).then((r) =>
-          r.json()
-        ),
-        fetch(`${url}/3/movie/upcoming?language=en-US&page=1`, options).then(
-          (r) => r.json()
-        ),
-      ]);
-
+    const [
+      Trending,
+      NowPlaying,
+      Popular,
+      TopRated,
+      TvSeries,
+      Upcoming,
+      TvGenres,
+      MovieGenres,
+    ] = await Promise.all([
+      fetch(`${url}/3/trending/all/day?language=en-US&page=1`, options).then(
+        (r) => r.json()
+      ),
+      fetch(`${url}/3/movie/now_playing?language=en-US&page=1`, options).then(
+        (r) => r.json()
+      ),
+      fetch(`${url}/3/movie/popular?language=en-US&page=1`, options).then((r) =>
+        r.json()
+      ),
+      fetch(`${url}/3/movie/top_rated?language=en-US&page=1`, options).then(
+        (r) => r.json()
+      ),
+      fetch(`${url}/3/tv/popular?language=en-US&page=1`, options).then((r) =>
+        r.json()
+      ),
+      fetch(`${url}/3/movie/upcoming?language=en-US&page=1`, options).then(
+        (r) => r.json()
+      ),
+      fetch(`${url}/3/genre/tv/list?language=en`, options).then((r) =>
+        r.json()
+      ),
+      fetch(`${url}/3/genre/movie/list?language=en`, options).then((r) =>
+        r.json()
+      ),
+    ]);
     const topTrending = (Trending?.results || [])
       .sort((a, b) => b.popularity - a.popularity)
-      .slice(0, 5);
+      .slice(0, 5)
+      .map((t) => {
+        const genres = t.genre_ids
+          ?.map((g) => {
+            const genre = MovieGenres.genres?.find((genre) => genre.id === g);
+            return genre ? genre.name : null;
+          })
+          .filter((name) => name !== null);
+        return {
+          ...t,
+          genres,
+        };
+      });
     const topNowPlaying = (NowPlaying?.results || []).slice(0, 10);
     const topPopular = (Popular?.results || []).slice(0, 10);
     const topRated = (TopRated?.results || []).slice(0, 10);
