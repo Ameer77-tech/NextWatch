@@ -9,6 +9,6 @@ export const useHomeData = create((set) => ({
   TvSeries: [],
   genres: [],
   Upcoming: [],
-  loading : true,
+  loading: true,
   setHomeData: (data) => set((state) => ({ ...state, ...data })),
 }));

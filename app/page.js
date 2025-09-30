@@ -10,10 +10,9 @@ import TvSeries from "@/components/TvSeries";
 import Upcoming from "@/components/Upcoming";
 import { Suspense } from "react";
 
-const TMDB_KEY = process.env.TMDB_API_KEY;
-const TMDB_URL = "https://api.themoviedb.org";
 
 const getHomeData = async () => {
+  console.log("🔥 Fetching TMDB API at", new Date().toISOString());
   const key = process.env.TMDB_API_KEY;
   const url = process.env.TMDB_URL;
 
@@ -23,7 +22,7 @@ const getHomeData = async () => {
       "Content-Type": "application/json",
       Authorization: `Bearer ${key}`,
     },
-    next: { revalidate: 3600 }, // ISR caching
+    next: { revalidate: 3600 },
   };
 
   try {
@@ -64,7 +63,7 @@ const getHomeData = async () => {
     ]);
     const topTrending = (Trending?.results || [])
       .sort((a, b) => b.popularity - a.popularity)
-      .slice(0, 5)
+      .slice(0, 7)
       .map((t) => {
         const genres = t.genre_ids
           ?.map((g) => {
@@ -77,11 +76,21 @@ const getHomeData = async () => {
           genres,
         };
       });
-    const topNowPlaying = (NowPlaying?.results || []).slice(0, 10);
-    const topPopular = (Popular?.results || []).slice(0, 10);
-    const topRated = (TopRated?.results || []).slice(0, 10);
-    const topTvSeries = (TvSeries?.results || []).slice(0, 10);
-    const topUpcoming = (Upcoming?.results || []).slice(0, 10);
+    const topNowPlaying = (NowPlaying?.results || [])
+      .sort((a, b) => b.popularity - a.popularity)
+      .slice(0, 20);
+    const topPopular = (Popular?.results || [])
+      .sort((a, b) => b.popularity - a.popularity)
+      .slice(0, 20);
+    const topRated = (TopRated?.results || [])
+      .sort((a, b) => b.popularity - a.popularity)
+      .slice(0, 20);
+    const topTvSeries = (TvSeries?.results || [])
+      .sort((a, b) => b.popularity - a.popularity)
+      .slice(0, 20);
+    const topUpcoming = (Upcoming?.results || [])
+      .sort((a, b) => b.popularity - a.popularity)
+      .slice(0, 20);
 
     return {
       Trending: topTrending,

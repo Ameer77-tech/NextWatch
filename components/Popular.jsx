@@ -4,7 +4,7 @@ import Container from "./CSR/Popular/Container";
 
 const Popular = () => {
   return (
-    <div className="mt-7 p-5 md:p-20">
+    <div className="mt-7 p-5 md:p-16 relative">
       <Heading />
       <Container />
     </div>

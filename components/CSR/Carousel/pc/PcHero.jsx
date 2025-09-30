@@ -5,20 +5,22 @@ import Image from "next/image";
 import Arrows from "@/components/Arrows";
 import { useHomeData } from "@/contexts/HomeData";
 import { Skeleton } from "@/components/ui/skeleton";
+import { Button } from "@/components/ui/button";
+import { Info } from "lucide-react";
 
 const PcHero = () => {
   const trending = useHomeData((s) => s.Trending) || [];
   const [slideIndex, setSlideIndex] = useState(0);
 
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setSlideIndex((prev) => (prev === trending.length - 1 ? 0 : prev + 1));
-    }, 6000);
+  // useEffect(() => {
+  //   const interval = setInterval(() => {
+  //     setSlideIndex((prev) => (prev === trending.length - 1 ? 0 : prev + 1));
+  //   }, 6000);
 
-    return () => {
-      clearInterval(interval);
-    };
-  }, [trending.length]);
+  //   return () => {
+  //     clearInterval(interval);
+  //   };
+  // }, [trending.length]);
 
   const handleNext = () => {
     setSlideIndex((prev) => (prev === trending.length - 1 ? 0 : prev + 1));
@@ -29,7 +31,7 @@ const PcHero = () => {
   };
 
   const posterVariants = {
-    initial: { scale: 0 },
+    initial: { scale: 0.5 },
     animate: { scale: 1 },
   };
   if (!trending || trending.length === 0)
@@ -47,7 +49,10 @@ const PcHero = () => {
     <div className="hidden md:block relative">
       <motion.div
         animate={{ x: `-${slideIndex * 100}%` }}
-        transition={{ type: "tween" }}
+        transition={{
+          ease: "easeInOut",
+          duration: 0.3,
+        }}
         className="flex md:min-h-screen relative"
       >
         {trending.map((movie) => (
@@ -57,6 +62,7 @@ const PcHero = () => {
                 src={`https://image.tmdb.org/t/p/original${movie.backdrop_path}`}
                 fill
                 alt={movie.title || movie.name || "Poster"}
+                priority={slideIndex === 0} // only load first one eagerly
                 className="object-cover w-full h-full"
               />
             </div>
@@ -67,17 +73,17 @@ const PcHero = () => {
       {/* Hero overlay */}
       <div className="absolute inset-0 flex h-full items-center gap-30 text-white bg-black/70 p-6 md:p-20">
         <div>
-          <h1 className="text-3xl md:text-5xl font-bold mb-2">
+          <h1 className="text-3xl max-w-xl md:text-4xl font-bold mb-2">
             {trending[slideIndex]?.name || trending[slideIndex]?.title}
           </h1>
-          <p className="text-sm md:text-lg max-w-xl mb-4">
+          <p className="text-sm opacity-80 md:text-lg max-w-xl mb-4">
             {trending[slideIndex]?.overview}
           </p>
           <div className="flex flex-wrap items-center gap-2 mb-4">
             {trending[slideIndex].genres.map((genre, idx) => (
               <div
                 key={idx}
-                className="inline-flex items-center px-2 py-1 rounded bg-gray-700 text-sm"
+                className="inline-flex items-center px-2 py-1 rounded bg-muted text-muted-foreground text-sm"
               >
                 {genre}
               </div>
@@ -93,12 +99,18 @@ const PcHero = () => {
             </div>
           </div>
           <div className="flex gap-4">
-            <button className="bg-red-600 px-4 py-2 rounded font-semibold hover:bg-red-700">
+            <Button variant="destructive" className="cursor-pointer">
               Play Trailer
-            </button>
-            <button className="bg-white text-black px-4 py-2 rounded hover:bg-gray-200">
-              More Info
-            </button>
+            </Button>
+            <Button
+              variant="secondary"
+              className="flex items-center justify-center cursor-pointer"
+            >
+              <p>More Info</p>{" "}
+              <div>
+                <Info />
+              </div>
+            </Button>
           </div>
         </div>
         <AnimatePresence mode="wait">

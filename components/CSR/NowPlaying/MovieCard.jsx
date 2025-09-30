@@ -2,9 +2,9 @@ import React from "react";
 import mockImage from "@/app/assets/mock.jpg";
 import Image from "next/image";
 import { motion } from "motion/react";
+import NowPlaying from "@/components/NowPlaying";
 
 const MovieCard = ({ cardRef, movie }) => {
-
   const cardVariants = {
     hidden: {
       opacity: 0,
@@ -25,7 +25,10 @@ const MovieCard = ({ cardRef, movie }) => {
     <motion.div
       ref={cardRef}
       className="relative flex flex-col"
-      variants={cardVariants} 
+      variants={cardVariants}
+      style={{
+        flex: `0 0 calc(${100 / 5}% - 16px)`,
+      }}
     >
       <div className="bg-slate-500 rounded-t-lg min-w-35 md:min-w-60 min-h-50 md:min-h-70 relative">
         <Image
@@ -43,7 +46,7 @@ const MovieCard = ({ cardRef, movie }) => {
         <h1 className="text-sm overflow-scroll h-1/2">
           {movie?.name || movie?.title}
         </h1>
-        <p className="text-xs opacity-75">⭐ 7.8</p>
+        <p className="text-xs opacity-75">⭐ {movie?.vote_average.toFixed(1)}</p>
       </div>
     </motion.div>
   );

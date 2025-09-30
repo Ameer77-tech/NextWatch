@@ -11,23 +11,23 @@ import {
   spring,
 } from "motion/react";
 import clsx from "clsx";
+import { JetBrainsMono } from "@/public/fonts/JetBrains";
 
 const Navbar = () => {
   const tabs = [
     {
-      name : "HOME"
+      name: "HOME",
     },
     {
-      name : "MOVIES"
+      name: "MOVIES",
     },
     {
-      name : "TV SHOWS"
+      name: "TVSHOWS",
     },
     {
-      name : "CATEGORIES"
-    }
-
-  ]
+      name: "CATEGORIES",
+    },
+  ];
   const [scrollDown, setscrollDown] = useState(false);
   const { scrollY } = useScroll();
   useMotionValueEvent(scrollY, "change", (latestValue) => {
@@ -103,14 +103,15 @@ const Navbar = () => {
           >
             <Logo />
             <div className="nav-end gap-3 items-center hidden md:flex lg:flex">
-              <ul className={clsx(
-                "md:flex md:min-w-xl md:justify-evenly md:p-5 md:font-semibold md:tracking-wider"
-                )}>
-                { tabs.map((tab, idx)=>(
-                  <li key={idx}>
-                    { tab.name }
-                  </li>
-                )) }
+              <ul
+                className={clsx(
+                  "md:flex md:min-w-xl md:justify-evenly md:p-5 md:font-semibold md:tracking-widest",
+                  JetBrainsMono.className
+                )}
+              >
+                {tabs.map((tab, idx) => (
+                  <li key={idx}>{tab.name}</li>
+                ))}
               </ul>
               <SearchIcon />
             </div>
