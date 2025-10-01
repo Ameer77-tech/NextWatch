@@ -1,31 +1,9 @@
 "use client";
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { PlayIcon } from "lucide-react";
 import { Button } from "../../ui/button";
-import { AnimatePresence, motion, useAnimation } from "motion/react";
-import { Skeleton } from "@/components/ui/skeleton";
 
 const DetailsCard = ({ slideIndex, Trending }) => {
-  const [show, setShow] = useState(false);
-  const controls = useAnimation();
-
-  useEffect(() => {
-    const runAnimation = async () => {
-      await controls.start({
-        y: 0,
-        opacity: 1,
-        transition: { type: "spring", stiffness: 100, damping: 15 },
-      });
-      await new Promise((resolve) => setTimeout(resolve, 5000));
-      await controls.start({
-        opacity: 0,
-        transition: { duration: 1, ease: "easeInOut", delay: 3 },
-      });
-    };
-
-    runAnimation();
-  }, [Trending]);
-
   if (!Trending || Trending.length === 0) {
     return null;
   }
@@ -51,13 +29,11 @@ const DetailsCard = ({ slideIndex, Trending }) => {
         cursor-pointer"
       >
         <PlayIcon size={20} fill="white" />
-        <motion.div
-          initial={{ y: 30, opacity: 0 }}
-          animate={controls}
+        <div
           className="text-xs absolute -top-8 bg-secondary-foreground text-black p-1 rounded-lg"
         >
           play trailer
-        </motion.div>
+        </div>
       </Button>
     </div>
   );

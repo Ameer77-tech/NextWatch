@@ -12,10 +12,14 @@ import {
 } from "motion/react";
 import clsx from "clsx";
 import { JetBrainsMono } from "@/public/fonts/JetBrains";
-import { usePathname } from "next/navigation";
+import Link from "next/link";
+import { usePathname, useSearchParams } from "next/navigation";
 
 const Navbar = () => {
-  const pathName = usePathname();
+  const pathname = usePathname(); // Get the current pathname
+  const searchParams = useSearchParams(); // Get the current search params
+  const currentPage = searchParams.get("page") || "1"; // Get the "page" query param or default to "1"
+
   const tabs = [
     {
       name: "HOME",
@@ -23,13 +27,22 @@ const Navbar = () => {
     },
     {
       name: "MOVIES",
-      href: "/category/movies",
+      href: "/category/movies?page=1",
     },
     {
       name: "TVSHOWS",
-      href: "/category/tvshows",
+      href: "/category/tvshows?page=1",
     },
   ];
+
+  const isActive = (tabHref) => {
+    const tabUrl = new URL(tabHref, "http://localhost"); // Create a URL object for comparison
+    const tabPathname = tabUrl.pathname;
+    const tabPage = tabUrl.searchParams.get("page") || "1";
+
+    return pathname === tabPathname && currentPage === tabPage;
+  };
+
   const [scrollDown, setscrollDown] = useState(false);
   const { scrollY } = useScroll();
   useMotionValueEvent(scrollY, "change", (latestValue) => {
@@ -39,23 +52,25 @@ const Navbar = () => {
       setscrollDown(false);
     }
   });
+
   const [hoverDivVals, setHoverDivVals] = useState({
     left: 0,
     width: 0,
   });
   const [showHoverDiv, setShowHoverDiv] = useState(false);
   const ulRef = useRef(null);
+
   const handleEnter = (e) => {
     setShowHoverDiv(true);
-    let ulPos = ulRef.current.getBoundingClientRect().left;
-    console.log(ulPos);
+    const ulPos = ulRef.current.getBoundingClientRect().left;
     const target = e.currentTarget;
-    let { left, width } = target.getBoundingClientRect();
+    const { left, width } = target.getBoundingClientRect();
     setHoverDivVals({
       left: left - ulPos,
       width,
     });
   };
+
   return (
     <>
       <AnimatePresence>
@@ -133,16 +148,17 @@ const Navbar = () => {
                 )}
               >
                 {tabs.map((tab, idx) => (
-                  <li
-                    key={idx}
-                    className={clsx(
-                      "cursor-pointer",
-                      pathName === tab.href ? "text-accent" : "text-white"
-                    )}
-                    onMouseEnter={handleEnter}
-                  >
-                    {tab.name}
-                  </li>
+                  <Link href={tab.href} key={idx}>
+                    <li
+                      className={clsx(
+                        "cursor-pointer",
+                        isActive(tab.href) ? "text-accent" : "text-white"
+                      )}
+                      onMouseEnter={handleEnter}
+                    >
+                      {tab.name}
+                    </li>
+                  </Link>
                 ))}
                 <AnimatePresence>
                   {showHoverDiv && (
