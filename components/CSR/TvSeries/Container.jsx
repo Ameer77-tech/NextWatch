@@ -117,7 +117,7 @@ const Container = () => {
           <MovieCard key={movie.id} cardRef={cardRef} movie={movie} />
         ))}
       </motion.div>
-      <Arrows handleNext={handleNext} handlePrev={handlePrev} />
+      <Arrows handleNext={handleNext} handlePrev={handlePrev} from="Tv Series" length={TvSeries.length}  activeIndex={currentIndex}/>
     </div>
   );
 };

@@ -41,7 +41,7 @@ const MovieCard = ({ cardRef, movie }) => {
           className="rounded-t-lg object-cover"
         />
       </div>
-      <div className="h-20 w-full bg-secondary flex flex-col justify-evenly p-1">
+      <div className="md:h-25 h-20 w-full bg-secondary flex flex-col justify-evenly p-1">
         <h1 className="text-sm overflow-scroll h-1/2">
           {movie?.name || movie?.title}
         </h1>

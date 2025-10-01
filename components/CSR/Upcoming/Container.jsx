@@ -69,21 +69,21 @@ const Container = () => {
             <Skeleton className="h-4 min-w-35 md:min-w-60"></Skeleton>
           </div>
         </div>
-          <div className="flex flex-col space-y-3 z-100">
+        <div className="flex flex-col space-y-3 z-100">
           <Skeleton className="h-60 md:min-w-60 rounded-xl" />
           <div className="space-y-2 ">
             <Skeleton className="h-4 min-w-35 md:min-w-60" />
             <Skeleton className="h-4 min-w-35 md:min-w-60"></Skeleton>
           </div>
         </div>
-          <div className="flex flex-col space-y-3 z-100">
+        <div className="flex flex-col space-y-3 z-100">
           <Skeleton className="h-60 md:min-w-60 rounded-xl" />
           <div className="space-y-2 ">
             <Skeleton className="h-4 min-w-35 md:min-w-60" />
             <Skeleton className="h-4 min-w-35 md:min-w-60"></Skeleton>
           </div>
         </div>
-          <div className="flex flex-col space-y-3 z-100">
+        <div className="flex flex-col space-y-3 z-100">
           <Skeleton className="h-60 md:min-w-60 rounded-xl" />
           <div className="space-y-2 ">
             <Skeleton className="h-4 min-w-35 md:min-w-60" />
@@ -123,7 +123,13 @@ const Container = () => {
           <MovieCard key={movie.id} cardRef={cardRef} movie={movie} />
         ))}
       </motion.div>
-      <Arrows handleNext={handleNext} handlePrev={handlePrev} />
+      <Arrows
+        handleNext={handleNext}
+        handlePrev={handlePrev}
+        from="Upcoming"
+        length={Upcoming.length}
+        activeIndex={currentIndex}
+      />
     </div>
   );
 };

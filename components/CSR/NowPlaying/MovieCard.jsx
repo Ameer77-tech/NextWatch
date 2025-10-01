@@ -42,8 +42,8 @@ const MovieCard = ({ cardRef, movie }) => {
           className="rounded-t-lg object-cover"
         />
       </div>
-      <div className="h-20 w-full bg-secondary flex flex-col justify-evenly p-1">
-        <h1 className="text-sm overflow-scroll h-1/2">
+      <div className="md:h-25 h-20 w-full bg-secondary flex flex-col justify-evenly">
+        <h1 className="text-sm">
           {movie?.name || movie?.title}
         </h1>
         <p className="text-xs opacity-75">⭐ {movie?.vote_average.toFixed(1)}</p>

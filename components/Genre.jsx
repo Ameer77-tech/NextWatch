@@ -1,21 +1,22 @@
-import { genres } from "@/app/lib/genres";
 import React from "react";
-import GenreCard from "./CSR/Genre/GenreCard";
-import { JetBrainsMono } from "@/public/fonts/JetBrains";
+import { genres } from "@/app/lib/genres";
+import { Card, CardHeader, CardTitle } from "@/components/ui/card";
 
-const Genre = () => {
+const GenreCard = () => {
   return (
-    <div className="genres px-5 mt-5 md:p-10">
-      <h1 className={`text-md md:text-2xl font-semibold ${JetBrainsMono.className}`}>
-        PICK YOUR FAVOURITE GENRE
-      </h1>
-      <div className="genresContainer grid grid-cols-2 md:grid-cols-4 place-items-center gap-5 mt-5 h-50 overflow-y-scroll">
-        {genres.map((genre) => (
-          <GenreCard genre={genre} key={genre} />
-        ))}
-      </div>
+    <div className="grid grid-cols-3 md:grid-cols-5 place-items-center gap-5 md:p-16 p-4">
+      {genres.map((genre, idx) => (
+        <Card
+          key={idx}
+          className="md:w-full w-full hover:-translate-y-2 active:-translate-y-2 select-none transition-transform ease cursor-grab"
+        >
+          <CardTitle className="text-sm md:text-lg font-semibold text-center">
+            {genre}
+          </CardTitle>
+        </Card>
+      ))}
     </div>
   );
 };
 
-export default Genre;
+export default GenreCard;

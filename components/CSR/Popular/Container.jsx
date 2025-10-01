@@ -43,7 +43,7 @@ const Container = () => {
   };
   const handlePrev = () => {
     setcurrentIndex((prev) => (prev !== 0 ? prev - 1 : (prev = prev)));
-  };  
+  };
 
   if (!Popular || Popular.length === 0) {
     return (
@@ -102,7 +102,13 @@ const Container = () => {
           <MovieCard key={movie.id} cardRef={cardRef} movie={movie} />
         ))}
       </motion.div>
-      <Arrows handleNext={handleNext} handlePrev={handlePrev} />
+      <Arrows
+        handleNext={handleNext}
+        handlePrev={handlePrev}
+        from="Popular"
+        length={Popular.length}
+        activeIndex={currentIndex}
+      />
     </div>
   );
 };
