@@ -1,9 +1,10 @@
+"use client";
 import React from "react";
-import { LucideMenu } from "lucide-react";
-const MenuIcon = () => {
+import { LucideMenu, X } from "lucide-react";
+const MenuIcon = ({ isOpen, setIsOpen }) => {
   return (
-    <div>
-      <LucideMenu size={32} />
+    <div onClick={() => setIsOpen((prev) => !prev)}>
+      {isOpen ? <X size={32} /> : <LucideMenu size={32} />}
     </div>
   );
 };

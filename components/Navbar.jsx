@@ -1,5 +1,5 @@
 "use client";
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import Logo from "./SSR/Logo";
 import SearchIcon from "./CSR/SearchIcon";
 import MenuIcon from "./CSR/MenuIcon";
@@ -14,12 +14,13 @@ import clsx from "clsx";
 import { JetBrainsMono } from "@/public/fonts/JetBrains";
 import Link from "next/link";
 import { usePathname, useSearchParams } from "next/navigation";
+import { Button } from "./ui/button";
 
 const Navbar = () => {
-  const pathname = usePathname(); // Get the current pathname
-  const searchParams = useSearchParams(); // Get the current search params
-  const currentPage = searchParams.get("page") || "1"; // Get the "page" query param or default to "1"
-
+  const pathname = usePathname();
+  const searchParams = useSearchParams();
+  const currentPage = searchParams.get("page") || "1";
+  const [isOpen, setIsOpen] = useState(false);
   const tabs = [
     {
       name: "HOME",
@@ -35,11 +36,21 @@ const Navbar = () => {
     },
   ];
 
+  useEffect(() => {
+    if (isOpen) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "";
+    }
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [isOpen]);
+
   const isActive = (tabHref) => {
-    const tabUrl = new URL(tabHref, "http://localhost"); // Create a URL object for comparison
+    const tabUrl = new URL(tabHref, "http://localhost");
     const tabPathname = tabUrl.pathname;
     const tabPage = tabUrl.searchParams.get("page") || "1";
-
     return pathname === tabPathname && currentPage === tabPage;
   };
 
@@ -101,13 +112,63 @@ const Navbar = () => {
             className={clsx("navbar")}
           >
             <Logo />
-            <div className="nav-end flex gap-3 items-center md:hidden lg:hidden">
+            <div className="nav-end flex gap-3 items-center md:hidden lg:hidden z-200">
               <SearchIcon />
-              <MenuIcon />
+              <MenuIcon isOpen={isOpen} setIsOpen={setIsOpen} />
             </div>
           </motion.div>
         )}
         {/* Mobile */}
+      </AnimatePresence>
+      <AnimatePresence>
+        {isOpen && (
+          <motion.div
+            initial={{
+              opacity: 0,
+            }}
+            animate={{
+              opacity: 1,
+            }}
+            exit={{
+              opacity: 0,
+            }}
+            className="md:hidden min-h-screen lg:hidden overlay absolute inset-0 bg-black/70 z-95"
+          >
+            <motion.div
+              initial={{
+                y: -200,
+              }}
+              animate={{
+                y: 0,
+                transition: {
+                  type: "spring",
+                  stiffness: 140,
+                  damping: 25,
+                },
+              }}
+              exit={{
+                y: -200,
+              }}
+              className="absolute flex flex-col space-y-5 left-0 top-22 h-auto p-5 w-full bg-background border rounded"
+            >
+              {tabs.map((tab, idx) => (
+                <Link href={tab.href} key={idx}>
+                  <Button
+                    variant="link"
+                    className={clsx(
+                      "text-white relative w-full",
+                      isActive(tab.href)
+                        ? "text-accent after:absolute after:h-[1px] after:bottom-0 after:left-0 after:bg-accent after:w-full"
+                        : "text-white"
+                    )}
+                  >
+                    {tab.name}
+                  </Button>
+                </Link>
+              ))}
+            </motion.div>
+          </motion.div>
+        )}
       </AnimatePresence>
       {/* PC */} {/* PC */} {/* PC */} {/* PC */} {/* PC */} {/* PC */}{" "}
       {/* PC */} {/* PC */} {/* PC */}

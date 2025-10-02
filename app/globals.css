@@ -118,12 +118,12 @@
     @apply border-border outline-ring/50;
   }
   body, html {
-    @apply bg-background text-foreground overflow-x-hidden;
+    @apply bg-background text-foreground;
   }
 }
 
 .navbar{
-  @apply md:hidden lg:hidden fixed top-0 left-1/2 bg-transparent backdrop-blur-xs -translate-x-1/2 md:w-3/4 w-full flex justify-between items-center px-4 py-5 z-100 text-accent;
+  @apply md:hidden lg:hidden fixed top-0 left-1/2 bg-background -translate-x-1/2 md:w-3/4 w-full flex justify-between items-center px-4 py-5 z-100 text-accent;
 }
 .pcNav{
   @apply hidden md:w-full z-100 md:flex md:fixed top-0 left-0 lg:flex md:h-15 md:px-20 md:justify-between md:items-center;

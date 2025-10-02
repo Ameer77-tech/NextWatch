@@ -117,7 +117,7 @@ const Page = async () => {
   const homeData = await getHomeData();
 
   return (
-    <div className="min-h-screen min-w-screen flex flex-col">
+    <div className="parent min-h-screen min-w-screen flex flex-col">
       <HomeInitializer data={homeData} />
       <Suspense fallback={<p>LOADING..........</p>}>
         <Hero />

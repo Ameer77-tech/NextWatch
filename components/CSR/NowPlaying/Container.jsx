@@ -50,7 +50,7 @@ const Container = () => {
   }
 
   return (
-    <div className="topRatedCarousel overflow-x-hidden mt-5">
+    <div className="overflow-x-hidden mt-5">
       <motion.div
         ref={containerRef}
         animate={{
@@ -66,7 +66,7 @@ const Container = () => {
           left: -MaxDrag,
           right: 0,
         }}
-        className="topRatedContainer gap-4 flex"
+        className="gap-4 flex"
         variants={containerVariants}
         initial="hidden"
         whileInView="visible"
