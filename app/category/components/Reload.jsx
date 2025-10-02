@@ -2,7 +2,7 @@
 import { Button } from "@/components/ui/button";
 import React from "react";
 
-const Relaod = () => {
+const Reload = () => {
   return (
     <Button variant="destructive" onClick={() => window.location.reload()}>
       RELOAD PAGE
@@ -10,4 +10,4 @@ const Relaod = () => {
   );
 };
 
-export default Relaod;
+export default Reload;

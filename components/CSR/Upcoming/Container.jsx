@@ -6,6 +6,7 @@ import MovieCard from "./MovieCard";
 import { useHomeData } from "@/contexts/HomeData";
 import { Skeleton } from "@/components/ui/skeleton";
 import Arrows from "@/components/Arrows";
+import UpComingSkeleton from "./Skeleton";
 
 const Container = () => {
   const Upcoming = useHomeData((state) => state.Upcoming);
@@ -46,52 +47,7 @@ const Container = () => {
   };
 
   if (!Upcoming || Upcoming.length === 0) {
-    return (
-      <div className="flex gap-4">
-        <div className="flex flex-col space-y-3 z-100">
-          <Skeleton className="h-60 md:min-w-60 rounded-xl" />
-          <div className="space-y-2 ">
-            <Skeleton className="h-4 min-w-35 md:min-w-60" />
-            <Skeleton className="h-4 min-w-35 md:min-w-60"></Skeleton>
-          </div>
-        </div>
-        <div className="flex flex-col space-y-3 z-100">
-          <Skeleton className="h-60 md:min-w-60 rounded-xl" />
-          <div className="space-y-2 ">
-            <Skeleton className="h-4 min-w-35 md:min-w-60" />
-            <Skeleton className="h-4 min-w-35 md:min-w-60"></Skeleton>
-          </div>
-        </div>
-        <div className="flex flex-col space-y-3 z-100">
-          <Skeleton className="h-60 md:min-w-60 rounded-xl" />
-          <div className="space-y-2 ">
-            <Skeleton className="h-4 min-w-35 md:min-w-60" />
-            <Skeleton className="h-4 min-w-35 md:min-w-60"></Skeleton>
-          </div>
-        </div>
-        <div className="flex flex-col space-y-3 z-100">
-          <Skeleton className="h-60 md:min-w-60 rounded-xl" />
-          <div className="space-y-2 ">
-            <Skeleton className="h-4 min-w-35 md:min-w-60" />
-            <Skeleton className="h-4 min-w-35 md:min-w-60"></Skeleton>
-          </div>
-        </div>
-        <div className="flex flex-col space-y-3 z-100">
-          <Skeleton className="h-60 md:min-w-60 rounded-xl" />
-          <div className="space-y-2 ">
-            <Skeleton className="h-4 min-w-35 md:min-w-60" />
-            <Skeleton className="h-4 min-w-35 md:min-w-60"></Skeleton>
-          </div>
-        </div>
-        <div className="flex flex-col space-y-3 z-100">
-          <Skeleton className="h-60 md:min-w-60 rounded-xl" />
-          <div className="space-y-2 ">
-            <Skeleton className="h-4 min-w-35 md:min-w-60" />
-            <Skeleton className="h-4 min-w-35 md:min-w-60"></Skeleton>
-          </div>
-        </div>
-      </div>
-    );
+    return <UpComingSkeleton />;
   }
 
   return (
