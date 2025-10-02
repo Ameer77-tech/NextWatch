@@ -57,14 +57,26 @@ const PcHero = () => {
       >
         {trending.map((movie) => (
           <div className="flex-shrink-0 w-full min-h-screen" key={movie.id}>
-            <div className="relative w-full h-full">
-              <Image
-                src={`https://image.tmdb.org/t/p/original${movie.backdrop_path}`}
-                fill
-                alt={movie.title || movie.name || "Poster"}
-                priority={slideIndex === 0} // only load first one eagerly
-                className="object-cover w-full h-full"
-              />
+            <div
+              className={`relative w-full h-full ${
+                movie.backdrop_path && "flex justify-center items-center"
+              }}`}
+            >
+              {movie.backdrop_path ? (
+                <Image
+                  src={`https://image.tmdb.org/t/p/original${movie.backdrop_path}`}
+                  fill
+                  alt={movie.title || movie.name || "Poster"}
+                  priority={slideIndex === 0}
+                  className="object-cover w-full h-full"
+                />
+              ) : (
+                <Image
+                  src="/broken-image.png"
+                  fill
+                  alt={movie.title || movie.name || "Poster"}
+                />
+              )}
             </div>
           </div>
         ))}

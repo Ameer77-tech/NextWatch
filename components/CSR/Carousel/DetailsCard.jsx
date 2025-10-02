@@ -29,11 +29,6 @@ const DetailsCard = ({ slideIndex, Trending }) => {
         cursor-pointer"
       >
         <PlayIcon size={20} fill="white" />
-        <div
-          className="text-xs absolute -top-8 bg-secondary-foreground text-black p-1 rounded-lg"
-        >
-          play trailer
-        </div>
       </Button>
     </div>
   );

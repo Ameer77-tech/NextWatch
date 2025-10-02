@@ -1,8 +1,7 @@
 import React from "react";
-import mockImage from "@/app/assets/mock.jpg";
 import Image from "next/image";
 import { motion } from "motion/react";
-import NowPlaying from "@/components/NowPlaying";
+
 
 const MovieCard = ({ cardRef, movie }) => {
   const cardVariants = {
