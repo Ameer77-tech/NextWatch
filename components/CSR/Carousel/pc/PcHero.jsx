@@ -46,7 +46,7 @@ const PcHero = () => {
     );
 
   return (
-    <div className="hidden md:block relative">
+    <div className="hidden md:block relative overflow-hidden">
       <motion.div
         animate={{ x: `-${slideIndex * 100}%` }}
         transition={{
