@@ -1,23 +1,27 @@
 "use client";
 import { AspectRatio } from "@radix-ui/react-aspect-ratio";
 import { Info } from "lucide-react";
-import { AnimatePresence, motion, scale } from "motion/react";
+import { AnimatePresence, motion, useInView } from "motion/react";
 import Image from "next/image";
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 
 const MovieCard = ({ name, source }) => {
   const [show, setShow] = useState(false);
+  const cardRef = useRef(null);
+  const cardInView = useInView(cardRef);
   return (
     <motion.div
+      ref={cardRef}
       initial={{
         opacity: 0,
         y: 20,
       }}
-      whileInView={{
-        opacity: 1,
-        y: 0,
+      animate={{
+        opacity: cardInView ? 1 : 0,
+        y: cardInView ? 0 : 20,
         transition: {
-          duration: 0.7,
+          duration: 0.5,
+          delay: 0.2,
         },
       }}
       viewport={{
@@ -36,6 +40,9 @@ const MovieCard = ({ name, source }) => {
       >
         {source ? (
           <Image
+            loading="lazy"
+            fetchPriority="low"
+            sizes="(min-width:1024px) 25vw, (min-width:768px) 33vw, 50vw"
             src={`https://image.tmdb.org/t/p/original${source}`}
             fill
             alt="image"

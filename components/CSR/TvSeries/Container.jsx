@@ -86,6 +86,7 @@ const Container = () => {
         from="Tv Series"
         length={TvSeries.length}
         activeIndex={currentIndex}
+        setActiveIndex={setcurrentIndex}
       />
     </div>
   );

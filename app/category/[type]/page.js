@@ -12,6 +12,7 @@ const page = async ({ params, searchParams }) => {
   const page = parseInt(sParams.page);
   const response = await fetchMovies(type, page);
   const results = response.results.sort((a, b) => b.popularity - a.popularity);
+
   return (
     <>
       <div

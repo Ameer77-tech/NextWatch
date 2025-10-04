@@ -85,6 +85,7 @@ const Container = () => {
         from="Popular"
         length={Popular.length}
         activeIndex={currentIndex}
+        setActiveIndex={setcurrentIndex}
       />
     </div>
   );

@@ -1,3 +1,4 @@
+"use server";
 import { JetBrainsMono } from "@/public/fonts/JetBrains";
 import React from "react";
 

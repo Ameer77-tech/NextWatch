@@ -85,6 +85,7 @@ const Container = () => {
         from="Upcoming"
         length={Upcoming.length}
         activeIndex={currentIndex}
+        setActiveIndex={setcurrentIndex}
       />
     </div>
   );

@@ -3,7 +3,6 @@ import React, { useEffect, useRef, useState } from "react";
 import { motion } from "motion/react";
 import MovieCard from "./MovieCard";
 import { useHomeData } from "@/contexts/HomeData";
-import { Skeleton } from "@/components/ui/skeleton";
 import Arrows from "@/components/Arrows";
 import NowPlayingSkeleton from "./Skeleton";
 
@@ -84,6 +83,7 @@ const Container = () => {
         from="Now Playing"
         length={NowPlaying.length}
         activeIndex={currentIndex}
+        setActiveIndex={setcurrentIndex}
       />
     </div>
   );

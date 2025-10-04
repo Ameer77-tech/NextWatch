@@ -132,7 +132,7 @@ const Navbar = () => {
             exit={{
               opacity: 0,
             }}
-            className="md:hidden min-h-screen lg:hidden overlay absolute inset-0 bg-black/70 z-95"
+            className="md:hidden min-h-screen lg:hidden overlay fixed inset-0 bg-black/70 z-95"
           >
             <motion.div
               initial={{
@@ -156,7 +156,7 @@ const Navbar = () => {
                   <Button
                     variant="link"
                     className={clsx(
-                      "text-white relative w-full",
+                      "text-white relative w-full select-none",
                       isActive(tab.href)
                         ? "text-accent after:absolute after:h-[1px] after:bottom-0 after:left-0 after:bg-accent after:w-full"
                         : "text-white"

@@ -47,9 +47,7 @@ const Container = () => {
   };
 
   if (!TopRated || TopRated.length === 0) {
-    return (
-      <TopRatedSkeleton />
-    );
+    return <TopRatedSkeleton />;
   }
 
   return (
@@ -81,7 +79,14 @@ const Container = () => {
           <MovieCard key={movie.id} cardRef={cardRef} movie={movie} />
         ))}
       </motion.div>
-      <Arrows handleNext={handleNext} handlePrev={handlePrev} from="Top Rated" length={TopRated.length}  activeIndex={currentIndex}/>
+      <Arrows
+        handleNext={handleNext}
+        setActiveIndex={setcurrentIndex}
+        handlePrev={handlePrev}
+        from="Top Rated"
+        length={TopRated.length}
+        activeIndex={currentIndex}
+      />
     </div>
   );
 };
