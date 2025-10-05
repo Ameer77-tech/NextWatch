@@ -7,10 +7,25 @@ import { useHomeData } from "@/contexts/HomeData";
 import { Skeleton } from "@/components/ui/skeleton";
 import { Button } from "@/components/ui/button";
 import { Info } from "lucide-react";
+import Link from "next/link";
 
 const PcHero = () => {
   const trending = useHomeData((s) => s.Trending) || [];
   const [slideIndex, setSlideIndex] = useState(0);
+  const [type, setType] = useState("");
+  useEffect(() => {
+    switch (trending[slideIndex]?.media_type) {
+      case "movie":
+        setType("movies");
+        break;
+      case "tv":
+        setType("tvshows");
+        break;
+      default:
+        console.log("Invalid Type");
+        break;
+    }
+  }, [trending, slideIndex]);
 
   // useEffect(() => {
   //   const interval = setInterval(() => {
@@ -111,18 +126,22 @@ const PcHero = () => {
             </div>
           </div>
           <div className="flex gap-4">
-            <Button variant="destructive" className="cursor-pointer">
-              Play Trailer
-            </Button>
-            <Button
-              variant="secondary"
-              className="flex items-center justify-center cursor-pointer"
-            >
-              <p>More Info</p>{" "}
-              <div>
-                <Info />
-              </div>
-            </Button>
+            <Link href={`/category/${type}/${trending[slideIndex].id}`}>
+              <Button variant="destructive" className="cursor-pointer">
+                Play Trailer
+              </Button>
+            </Link>
+            <Link href={`/category/${type}/${trending[slideIndex].id}/#info`}>
+              <Button
+                variant="secondary"
+                className="flex items-center justify-center cursor-pointer"
+              >
+                <p>More Info</p>{" "}
+                <div>
+                  <Info />
+                </div>
+              </Button>
+            </Link>
           </div>
         </div>
         <AnimatePresence mode="wait">

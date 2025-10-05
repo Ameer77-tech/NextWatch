@@ -2,6 +2,7 @@
 import React, { useState } from "react";
 import { PlayIcon } from "lucide-react";
 import { Button } from "../../ui/button";
+import Link from "next/link";
 
 const DetailsCard = ({ slideIndex, Trending }) => {
   if (!Trending || Trending.length === 0) {
@@ -23,13 +24,20 @@ const DetailsCard = ({ slideIndex, Trending }) => {
           idx == Trending[slideIndex]?.genres?.length - 1 ? g : g + ", "
         )}
       </p>
-      <Button
-        variant="ghost"
-        className="absolute right-5 h-auto w-auto flex bg-accent justify-center items-center rounded-full
-        cursor-pointer"
+      <Link
+        className="absolute right-5"
+        href={`/category/${
+          Trending[slideIndex]?.media_type == "movie" ? "movies" : "tvshows"
+        }/${Trending[slideIndex]?.id}`}
       >
-        <PlayIcon size={20} fill="white" />
-      </Button>
+        <Button
+          variant="destructive"
+          className="right-5 h-auto w-auto flex justify-center items-center rounded-full
+        cursor-pointer"
+        >
+          <PlayIcon size={20} fill="white" />
+        </Button>
+      </Link>
     </div>
   );
 };

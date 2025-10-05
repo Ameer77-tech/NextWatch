@@ -21,7 +21,7 @@ const page = async ({ params, searchParams }) => {
     "
       >
         <Heading name={type.toUpperCase()} />
-        <Container results={results} />
+        <Container results={results} type={type}/>
         <Navigation page={page} type={type} />
       </div>
       <Footer />
