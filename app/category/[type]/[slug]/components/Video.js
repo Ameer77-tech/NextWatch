@@ -14,7 +14,7 @@ const TrailerPlayer = ({ ytKey }) => {
         src={`https://www.youtube.com/watch?v=${ytKey}`}
         controls={true}
         playing={true}
-        playIcon={true}
+        playIcon={false}
         width="100%"
         height="100%"
         autoPlay={true}
@@ -27,7 +27,7 @@ const TrailerPlayer = ({ ytKey }) => {
             },
           },
         }}
-        light={false} 
+        light={false}
         loop={false}
         muted={false}
         volume={0.8}

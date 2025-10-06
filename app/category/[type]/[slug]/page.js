@@ -4,6 +4,7 @@ import BgImage from "./components/bg-image";
 import Hero from "./components/Hero";
 import Embed from "./components/Embed";
 import MovieInitializer from "./components/MovieInitializer";
+import Similar from "./components/Similar";
 
 const page = async ({ params }) => {
   const parametres = await params;
@@ -27,6 +28,7 @@ const page = async ({ params }) => {
             }
           />
           <Hero />
+          <Similar data={response?.similar?.results} type={type} />
         </div>
       </div>
     </>

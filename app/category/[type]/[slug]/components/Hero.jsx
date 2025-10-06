@@ -94,10 +94,10 @@ const Hero = () => {
               </div>
 
               <div className="md:text-right text-left md:block flex items-center space-x-2">
-                <div className="text-xs  text-white/70">Rating</div>
-                <div className="px-3 py-1 rounded-full bg-accent/50 border-background border font-semibold">
-                  <span className="text-xs text-white">
-                    ({(details.vote_average || 0).toFixed(1)})
+                <div className="text-xs text-white/50">Rating</div>
+                <div className="px-3 py-1 rounded-full bg-white/10 border border-white/20 backdrop-blur-md">
+                  <span className="text-xs font-semibold text-white">
+                    ⭐ {(details.vote_average || 0).toFixed(1)}
                   </span>
                 </div>
               </div>
