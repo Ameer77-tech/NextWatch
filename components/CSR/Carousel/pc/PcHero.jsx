@@ -6,7 +6,7 @@ import Arrows from "@/components/Arrows";
 import { useHomeData } from "@/contexts/HomeData";
 import { Skeleton } from "@/components/ui/skeleton";
 import { Button } from "@/components/ui/button";
-import { Info } from "lucide-react";
+import { Info, StarIcon } from "lucide-react";
 import Link from "next/link";
 
 const PcHero = () => {
@@ -115,8 +115,9 @@ const PcHero = () => {
                 {genre}
               </div>
             ))}
-            <div className="inline-flex items-center px-2 py-1 rounded bg-red-600 text-sm">
-              ⭐ {trending[slideIndex]?.vote_average.toFixed(1)}
+            <div className="flex justify-center items-center px-2 py-1 rounded bg-red-600 text-sm">
+              <StarIcon size={15} fill="yellow"/>{" "}
+              {trending[slideIndex]?.vote_average.toFixed(1)}
             </div>
             <div className="inline-flex items-center px-2 py-1 rounded border border-white text-sm">
               {new Date(

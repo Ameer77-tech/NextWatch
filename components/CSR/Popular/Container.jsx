@@ -76,7 +76,11 @@ const Container = () => {
         }}
       >
         {Popular.map((movie) => (
-          <MovieCard key={movie.id} cardRef={cardRef} movie={movie} />
+          <MovieCard
+            key={movie.id}
+            cardRef={cardRef}
+            movie={movie}
+          />
         ))}
       </motion.div>
       <Arrows
