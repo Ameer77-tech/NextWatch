@@ -2,8 +2,6 @@
 
 export const fetchShow = async (type, id) => {
   if (!type || !id) throw new Error("fetchShow: missing type or id");
-
-  // Convert type to TMDB API type
   let tmdbType = "";
   if (type === "movies") tmdbType = "movie";
   else if (type === "tvshows") tmdbType = "tv";
