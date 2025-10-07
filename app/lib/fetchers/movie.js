@@ -21,6 +21,7 @@ export const fetchShow = async (type, id) => {
       {
         method: "GET",
         headers,
+        next: { revalidate: 3600 },
       }
     );
     if (!detailsRes.ok)
@@ -31,6 +32,7 @@ export const fetchShow = async (type, id) => {
       {
         method: "GET",
         headers,
+        next: { revalidate: 3600 },
       }
     );
     if (!creditsRes.ok)
@@ -42,6 +44,7 @@ export const fetchShow = async (type, id) => {
       {
         method: "GET",
         headers,
+        next: { revalidate: 3600 },
       }
     );
     if (!videosRes.ok)
@@ -53,6 +56,7 @@ export const fetchShow = async (type, id) => {
       {
         method: "GET",
         headers,
+        next: { revalidate: 3600 },
       }
     );
     if (!similarRes.ok)

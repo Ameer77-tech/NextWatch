@@ -5,7 +5,7 @@ import React from "react";
 const SimilarCard = ({ title, poster, type, showId }) => {
   return (
     <Link href={`/category/${type}/${showId}`}>
-      <div className="min-w-50 md:min-w-50 flex flex-col space-y-3">
+      <div className="min-w-50 md:min-w-50 flex flex-col space-y-3 bg-secondary">
         <AspectRatio ratio={3 / 4}>
           {poster ? (
             <Image

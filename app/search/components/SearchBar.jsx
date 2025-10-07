@@ -27,7 +27,7 @@ const SearchBar = () => {
           onChange={(e) => setsearchTerm(e.target.value)}
           value={searchTerm}
           aria-label="Search"
-          placeholder="Search movies, shows, or people"
+          placeholder="Search movies or series"
           className="bg-transparent border-0 outline-none text-foreground placeholder:text-muted-foreground px-5"
         />
 

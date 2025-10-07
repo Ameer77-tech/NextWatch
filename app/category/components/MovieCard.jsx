@@ -7,6 +7,7 @@ import Link from "next/link";
 import React, { useRef, useState } from "react";
 
 const MovieCard = ({ name, source, type, id }) => {
+
   const [show, setShow] = useState(false);
   const cardRef = useRef(null);
   const cardInView = useInView(cardRef);
@@ -32,7 +33,7 @@ const MovieCard = ({ name, source, type, id }) => {
         whileTap={{
           scale: 0.95,
         }}
-        className="flex flex-col w-full rounded-xl select-none"
+        className="flex flex-col w-full rounded-xl select-none bg-secondary"
       >
         <Link href={`/category/${type}/${id}`}>
           <AspectRatio

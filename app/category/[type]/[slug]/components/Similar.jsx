@@ -18,7 +18,7 @@ const Similar = ({ data, type }) => {
         >
           Similar
         </h1>
-        <div className="w-screen md:w-full">
+        <div className="w-full md:w-full">
           <div className="md:w-full px-3 flex space-x-5 overflow-scroll">
             {data.map((show, idx) => (
               <SimilarCard
