@@ -14,7 +14,13 @@ const Heading = ({ name }) => {
       </h1>
 
       {/* Button */}
-      <Link href={`/category/${name.trim().toLowerCase().replace(/\s+/g, "")}`}>
+      <Link
+        href={`/category/${
+          name.trim().toLowerCase().replace(/\s+/g, "") === "tvseries"
+            ? "tvshows"
+            : name.trim().toLowerCase().replace(/\s+/g, "")
+        }?page=1`}
+      >
         <Button
           variant="destructive"
           className="cursor-pointer hover:bg-destructive/90 transition-colors"

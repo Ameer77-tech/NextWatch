@@ -3,8 +3,6 @@ import React from "react";
 import SimilarCard from "./SimilarCard";
 
 const Similar = ({ data, type }) => {
-  console.log(data);
-
   return (
     <div className="relative w-full h-auto mt-15 flex justify-center">
       <div

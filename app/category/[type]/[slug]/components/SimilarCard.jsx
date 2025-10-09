@@ -5,7 +5,7 @@ import React from "react";
 const SimilarCard = ({ title, poster, type, showId }) => {
   return (
     <Link href={`/category/${type}/${showId}`}>
-      <div className="min-w-50 flex flex-col space-y-3 hover:scale-105 transition-all ease focus:scale-105 duration-300">
+      <div className="md:w-50 min-w-50 flex flex-col space-y-3 hover:scale-105 transition-all ease focus:scale-105 duration-300">
         <AspectRatio
           ratio={3 / 4}
           className="bg-secondary flex justify-center items-center rounded-xl"

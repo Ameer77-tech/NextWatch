@@ -11,7 +11,7 @@ const page = async ({ params }) => {
   const type = parametres.type;
   const id = parametres.slug;
   const response = await fetchShow(type, id);
-  console.log(response);
+
 
   return (
     <>
