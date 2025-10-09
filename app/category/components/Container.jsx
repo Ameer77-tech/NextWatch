@@ -8,15 +8,17 @@ const Container = ({ results, type }) => {
       {results.length < 1 ? (
         <Reload />
       ) : (
-        results?.map((res, idx) => (
-          <MovieCard
-            id={res.id}
-            type={type}
-            key={res.id}
-            name={res.title || res.name}
-            source={res.poster_path}
-          />
-        ))
+        results
+          ?.sort((a, b) => b.popularity - a.popularity)
+          .map((res, idx) => (
+            <MovieCard
+              id={res.id}
+              type={type}
+              key={res.id}
+              name={res.title || res.name}
+              source={res.poster_path}
+            />
+          ))
       )}
     </div>
   );

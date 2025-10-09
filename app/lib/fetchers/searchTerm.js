@@ -25,9 +25,6 @@ export const SearchShow = async (term) => {
     }
   } else {
     try {
-      console.log(
-        `${url}/3/search/multi?query=${term}include_adult=false&language=en-US&page=1`
-      );
 
       const results = await fetch(
         `${url}/3/search/multi?query=${term}&include_adult=false&language=en-US&page=1`,

@@ -8,11 +8,11 @@ const page = async ({ searchParams }) => {
   const searchTerm = params.q;
   const response = await SearchShow(searchTerm);
   console.log(response);
-
+  
   return (
     <div className="md:mt-15 mt-[90px] md:p-20 flex flex-col items-center">
       <Search />
-      <Container results={response.results.results} />
+      <Container results={response?.results.results} />
     </div>
   );
 };

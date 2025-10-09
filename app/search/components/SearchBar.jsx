@@ -1,5 +1,5 @@
 "use client";
-import React, { useRef, useState } from "react";
+import React, { useRef, useState, useEffect } from "react";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Search, X } from "lucide-react";
@@ -12,9 +12,17 @@ const SearchBar = () => {
   const handleSearch = (e) => {
     e.preventDefault();
     if (!searchTerm.trim()) return;
-
     router.push(`/search?q=${encodeURIComponent(searchTerm.trim())}`);
   };
+
+  const handleEnter = (e) => {
+    if (e.key !== "Enter") return;
+    handleSearch(e);
+  };
+
+  useEffect(() => {
+    inputRef.current.focus();
+  }, []);
   return (
     <div className="w-full max-w-3xl mx-auto">
       <div className="relative bg-background border border-border rounded-lg shadow-sm px-3 py-2 flex items-center gap-2">
@@ -23,6 +31,7 @@ const SearchBar = () => {
         </span>
 
         <Input
+          onKeyDown={(e) => handleEnter(e)}
           ref={inputRef}
           onChange={(e) => setsearchTerm(e.target.value)}
           value={searchTerm}

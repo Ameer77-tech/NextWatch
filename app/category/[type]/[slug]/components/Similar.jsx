@@ -19,11 +19,11 @@ const Similar = ({ data, type }) => {
           Similar
         </h1>
         <div className="w-full md:w-full">
-          <div className="md:w-full px-3 flex space-x-5 overflow-scroll">
+          <div className="md:w-full px-3 flex space-x-5 overflow-scroll md:flex-wrap md:justify-center md:items-center md:space-y-10">
             {data.map((show, idx) => (
               <SimilarCard
                 key={show.id}
-                title={show.title}
+                title={show?.title || show?.name}
                 poster={show.poster_path}
                 type={type}
                 showId={show.id}

@@ -2,7 +2,6 @@ import HomeInitializer from "@/components/contextIntial/HomeInitializer";
 import Footer from "@/components/Footer";
 import Genre from "@/components/Genre";
 import Hero from "@/components/Hero";
-import Navbar from "@/components/Navbar";
 import NowPlaying from "@/components/NowPlaying";
 import Popular from "@/components/Popular";
 import TopRated from "@/components/TopRated";
@@ -11,7 +10,7 @@ import Upcoming from "@/components/Upcoming";
 import { Suspense } from "react";
 
 const getHomeData = async () => {
-  console.log("🔥 Fetching TMDB API at", new Date().toISOString());
+
   const key = process.env.TMDB_API_KEY;
   const url = process.env.TMDB_URL;
 

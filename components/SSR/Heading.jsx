@@ -1,6 +1,7 @@
 import React from "react";
 import { JetBrainsMono } from "@/public/fonts/JetBrains";
 import { Button } from "@/components/ui/button";
+import Link from "next/link";
 
 const Heading = ({ name }) => {
   return (
@@ -13,12 +14,14 @@ const Heading = ({ name }) => {
       </h1>
 
       {/* Button */}
-      <Button
-        variant="destructive"
-        className="cursor-pointer hover:bg-destructive/90 transition-colors"
-      >
-        See All
-      </Button>
+      <Link href={`/category/${name.trim().toLowerCase().replace(/\s+/g, "")}`}>
+        <Button
+          variant="destructive"
+          className="cursor-pointer hover:bg-destructive/90 transition-colors"
+        >
+          See All
+        </Button>
+      </Link>
     </div>
   );
 };

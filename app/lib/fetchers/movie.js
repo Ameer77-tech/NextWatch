@@ -3,7 +3,14 @@
 export const fetchShow = async (type, id) => {
   if (!type || !id) throw new Error("fetchShow: missing type or id");
   let tmdbType = "";
-  if (type === "movies") tmdbType = "movie";
+  if (
+    type === "movies" ||
+    type === "upcoming" ||
+    type === "newreleases" ||
+    type === "toprated" ||
+    type === "popular"
+  )
+    tmdbType = "movie";
   else if (type === "tvshows") tmdbType = "tv";
   else throw new Error(`fetchShow: invalid type "${type}"`);
 

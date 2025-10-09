@@ -5,8 +5,6 @@ import { Info } from "lucide-react";
 import Link from "next/link";
 
 const MovieCard = ({ cardRef, movie }) => {
-  console.log(movie);
-
   const [show, setShow] = useState(false);
   const cardVariants = {
     hidden: {
