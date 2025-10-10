@@ -1,4 +1,3 @@
-"use client";
 import React, { useEffect, useRef, useState } from "react";
 import Logo from "./SSR/Logo";
 import SearchIcon from "./CSR/SearchIcon";

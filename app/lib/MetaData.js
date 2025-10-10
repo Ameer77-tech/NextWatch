@@ -6,7 +6,7 @@ export const metaData = {
   openGraph: {
     title: "NextWatch - Movie Trailers & Info",
     description: "Watch the latest movie trailers, explore upcoming releases, and discover trending films.",
-    url: "https://nextwatch.vercel.app",
+    url: "http:localhost:3000",
     siteName: "NextWatch",
     images: [
       {

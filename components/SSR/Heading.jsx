@@ -5,7 +5,7 @@ import Link from "next/link";
 
 const Heading = ({ name }) => {
   return (
-    <div className="flex justify-between items-center py-6 px-8 bg-card border border-ring rounded-lg shadow-lg">
+    <div className="flex justify-between items-center py-6 px-8 bg-card  rounded-lg shadow-lg">
       <h1
         className={`relative text-lg md:text-2xl z-10 font-bold text-primary-foreground ${JetBrainsMono.className}`}
       >

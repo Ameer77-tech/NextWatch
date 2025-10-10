@@ -10,6 +10,7 @@ import Upcoming from "@/components/Upcoming";
 import { Suspense } from "react";
 
 const getHomeData = async () => {
+  console.log("fetching");
 
   const key = process.env.TMDB_API_KEY;
   const url = process.env.TMDB_URL;
@@ -115,21 +116,19 @@ const Page = async () => {
   const homeData = await getHomeData();
 
   return (
-
-      <div className="parent min-h-screen min-w-screen flex flex-col">
-        <HomeInitializer data={homeData} />
-        <Suspense fallback={<p>LOADING..........</p>}>
-          <Hero />
-          <NowPlaying />
-          <Popular />
-          <TopRated />
-          <TvSeries />
-          <Genre />
-          <Upcoming />
-          <Footer />
-        </Suspense>
-      </div>
-
+    <div className="parent min-h-screen min-w-screen flex flex-col">
+      <HomeInitializer data={homeData} />
+      <Suspense fallback={<p>LOADING..........</p>}>
+        <Hero />
+        <NowPlaying />
+        <Popular />
+        <TopRated />
+        <TvSeries />
+        <Genre />
+        <Upcoming />
+        <Footer />
+      </Suspense>
+    </div>
   );
 };
 

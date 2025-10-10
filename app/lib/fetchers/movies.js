@@ -1,4 +1,5 @@
 export const fetchMovies = async (t, page = 1) => {
+   console.log("fetching");
   let filter = "";
   let type = "";
   switch (t) {

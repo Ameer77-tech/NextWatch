@@ -4,12 +4,16 @@ import Heading from "../components/Heading";
 import Container from "../components/Container";
 import Navigation from "../components/Navigation";
 import Footer from "@/components/Footer";
+import NotFound from "@/app/not-found";
 
 const page = async ({ params, searchParams }) => {
   const sParams = await searchParams;
   const param = await params;
   const type = param.type;
   const page = parseInt(sParams.page);
+  if (!page) {
+    return <NotFound />;
+  }
   const response = await fetchMovies(type, page);
   const results = response.results.sort((a, b) => b.popularity - a.popularity);
 
@@ -21,7 +25,7 @@ const page = async ({ params, searchParams }) => {
     "
       >
         <Heading name={type.toUpperCase()} />
-        <Container results={results} type={type}/>
+        <Container results={results} type={type} />
         <Navigation page={page} type={type} />
       </div>
       <Footer />

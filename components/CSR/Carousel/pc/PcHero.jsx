@@ -81,6 +81,7 @@ const PcHero = () => {
                 <Image
                   src={`https://image.tmdb.org/t/p/original${movie.backdrop_path}`}
                   fill
+                  sizes="(min-width:1024px) 25vw, (min-width:768px) 33vw, 50vw"
                   alt={movie.title || movie.name || "Poster"}
                   priority={slideIndex === 0}
                   className="object-cover w-full h-full"
@@ -116,7 +117,7 @@ const PcHero = () => {
               </div>
             ))}
             <div className="flex justify-center items-center px-2 py-1 rounded bg-red-600 text-sm">
-              <StarIcon size={15} fill="yellow"/>{" "}
+              <StarIcon size={15} fill="yellow" />{" "}
               {trending[slideIndex]?.vote_average.toFixed(1)}
             </div>
             <div className="inline-flex items-center px-2 py-1 rounded border border-white text-sm">

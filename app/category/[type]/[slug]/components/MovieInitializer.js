@@ -6,7 +6,7 @@ const MovieInitializer = ({ data }) => {
   const setMovieStore = useMovieStore((s) => s.setMovieStore);
   useEffect(() => {
     setMovieStore(data);
-  }, []);
+  }, [setMovieStore, data]);
   return null;
 };
 

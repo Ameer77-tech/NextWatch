@@ -3,7 +3,7 @@ import React from "react";
 
 const SkeletonLoad = () => {
   return (
-    <div className="flex flex-col items-center w-full px-4 py-6 space-y-6">
+    <div className="flex md:mt-15 mt-[90px] flex-col items-center w-full px-4 py-6 space-y-6">
       <div className="w-full max-w-6xl aspect-video rounded-xl overflow-hidden">
         <Skeleton className="w-full h-full rounded-xl" />
       </div>

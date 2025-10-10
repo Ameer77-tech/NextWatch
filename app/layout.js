@@ -1,7 +1,8 @@
 import { poppins } from "@/public/fonts/Poppins";
 import { metaData } from "./lib/MetaData";
 import "./globals.css";
-import Navbar from "@/components/Navbar";
+import NavBarClient from "@/components/NavBarClient";
+import { Suspense } from "react";
 
 export const metadata = metaData;
 
@@ -9,7 +10,9 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body className={`${poppins.className} antialiased`}>
-        <Navbar />
+        <Suspense fallback={<>.....</>}>
+          <NavBarClient />
+        </Suspense>
         {children}
       </body>
     </html>

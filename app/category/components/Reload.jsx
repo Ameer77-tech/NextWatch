@@ -4,9 +4,9 @@ import React from "react";
 
 const Reload = () => {
   return (
-    <Button variant="destructive" onClick={() => window.location.reload()}>
-      RELOAD PAGE
-    </Button>
+    <p className="text-center text-white">
+      SERVER ERROR! RELOAD THE PAGE TO TRY AGAIN
+    </p>
   );
 };
 

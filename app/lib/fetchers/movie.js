@@ -1,74 +1,47 @@
-"use server"; // ensure this runs on the server in Next.js
+"use server";
+
+const fetchWithRetry = async (url, options = {}, retries = 3, delayMs = 500) => {
+  for (let i = 0; i < retries; i++) {
+    try {
+      const res = await fetch(url, options);
+      if (!res.ok) throw new Error(`${res.status} ${res.statusText}`);
+      return await res.json();
+    } catch (err) {
+      if (i === retries - 1) throw err;
+      await new Promise((r) => setTimeout(r, delayMs));
+    }
+  }
+};
 
 export const fetchShow = async (type, id) => {
+  console.log("fetching");
   if (!type || !id) throw new Error("fetchShow: missing type or id");
-  let tmdbType = "";
-  if (
-    type === "movies" ||
-    type === "upcoming" ||
-    type === "newreleases" ||
-    type === "toprated" ||
-    type === "popular"
-  )
-    tmdbType = "movie";
-  else if (type === "tvshows") tmdbType = "tv";
-  else throw new Error(`fetchShow: invalid type "${type}"`);
 
-  const TMDB_BEARER = process.env.TMDB_API_KEY;
-  if (!TMDB_BEARER) throw new Error("TMDB_API_KEY is not defined");
+  const tmdbType =
+    type === "movies" || type === "upcoming" || type === "newreleases" || type === "toprated" || type === "popular"
+      ? "movie"
+      : type === "tvshows"
+      ? "tv"
+      : null;
+
+  if (!tmdbType) throw new Error(`fetchShow: invalid type "${type}"`);
 
   const headers = {
-    Authorization: `Bearer ${TMDB_BEARER}`,
+    Authorization: `Bearer ${process.env.TMDB_API_KEY}`,
     Accept: "application/json",
   };
 
+  if (!headers.Authorization) throw new Error("TMDB_API_KEY is not defined");
+
+  const baseUrl = `https://api.themoviedb.org/3/${tmdbType}/${id}`;
   try {
-    const detailsRes = await fetch(
-      `https://api.themoviedb.org/3/${tmdbType}/${id}?language=en-US`,
-      {
-        method: "GET",
-        headers,
-        next: { revalidate: 3600 },
-      }
-    );
-    if (!detailsRes.ok)
-      throw new Error(`${detailsRes.status} ${detailsRes.statusText}`);
-    const details = await detailsRes.json();
-    const creditsRes = await fetch(
-      `https://api.themoviedb.org/3/${tmdbType}/${id}/credits?language=en-US`,
-      {
-        method: "GET",
-        headers,
-        next: { revalidate: 3600 },
-      }
-    );
-    if (!creditsRes.ok)
-      throw new Error(`${creditsRes.status} ${creditsRes.statusText}`);
-    const credits = await creditsRes.json();
+    const [details, credits, videos, similar] = await Promise.all([
+      fetchWithRetry(`${baseUrl}?language=en-US`, { headers, next: { revalidate: 3600 } }),
+      fetchWithRetry(`${baseUrl}/credits?language=en-US`, { headers, next: { revalidate: 3600 } }),
+      fetchWithRetry(`${baseUrl}/videos?language=en-US`, { headers, next: { revalidate: 3600 } }),
+      fetchWithRetry(`${baseUrl}/similar?language=en-US`, { headers, next: { revalidate: 3600 } }),
+    ]);
 
-    const videosRes = await fetch(
-      `https://api.themoviedb.org/3/${tmdbType}/${id}/videos?language=en-US`,
-      {
-        method: "GET",
-        headers,
-        next: { revalidate: 3600 },
-      }
-    );
-    if (!videosRes.ok)
-      throw new Error(`${videosRes.status} ${videosRes.statusText}`);
-    const videos = await videosRes.json();
-
-    const similarRes = await fetch(
-      `https://api.themoviedb.org/3/${tmdbType}/${id}/similar?language=en-US`,
-      {
-        method: "GET",
-        headers,
-        next: { revalidate: 3600 },
-      }
-    );
-    if (!similarRes.ok)
-      throw new Error(`${similarRes.status} ${similarRes.statusText}`);
-    const similar = await similarRes.json();
     return { details, credits, videos, similar };
   } catch (err) {
     console.error("fetchShow error:", err);
