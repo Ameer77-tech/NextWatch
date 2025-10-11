@@ -4,6 +4,7 @@ import Genre from "@/components/Genre";
 import Hero from "@/components/Hero";
 import NowPlaying from "@/components/NowPlaying";
 import Popular from "@/components/Popular";
+import Spinner from "@/components/Spinner";
 import TopRated from "@/components/TopRated";
 import TvSeries from "@/components/TvSeries";
 import Upcoming from "@/components/Upcoming";
@@ -118,7 +119,7 @@ const Page = async () => {
   return (
     <div className="parent min-h-screen min-w-screen flex flex-col">
       <HomeInitializer data={homeData} />
-      <Suspense fallback={<p>LOADING..........</p>}>
+      <Suspense fallback={<Spinner />}>
         <Hero />
         <NowPlaying />
         <Popular />

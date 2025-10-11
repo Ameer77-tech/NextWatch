@@ -11,7 +11,7 @@ const Footer = () => {
         {/* Logo & Branding */}
         <div className="flex flex-col gap-2">
           <div className="flex items-center">
-            <Image src="/favicon.png" alt="logo" width={50} height={50} />
+            <Image src="/favicon.png" alt="logo" width={40} height={40} />
             <h1
               className={`text-red-600 text-2xl font-bold ${JetBrainsMono.className}`}
             >
@@ -29,11 +29,7 @@ const Footer = () => {
               placeholder="Tell Me Your Experience"
               className="bg-gray-900 border-gray-700 text-white"
             />
-            <Button
-              variant="default"
-            >
-              Submit
-            </Button>
+            <Button variant="default">Submit</Button>
           </div>
         </div>
 

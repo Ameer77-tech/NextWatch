@@ -5,8 +5,10 @@ import { JetBrainsMono } from "@/public/fonts/JetBrains";
 const Logo = () => {
   return (
     <div className="nav-start flex items-center">
-      <Image src="/favicon.png" alt="logo" width={50} height={50} />
-      <h1 className={`${JetBrainsMono.className} text-2xl md:text-3xl md:text-accent font-bold`}>NextWatch</h1>
+      <Image src="/favicon.png" alt="logo" width={30} height={30} />
+      <h1 className="font-medium ml-2 w-20 leading-4 text-xl text-white">
+        Next Watch
+      </h1>
     </div>
   );
 };

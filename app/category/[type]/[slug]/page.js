@@ -1,5 +1,5 @@
 import { fetchShow } from "@/app/lib/fetchers/movie";
-import React from "react";
+import React, { Suspense } from "react";
 import BgImage from "./components/bg-image";
 import Hero from "./components/Hero";
 import Embed from "./components/Embed";
@@ -7,6 +7,8 @@ import MovieInitializer from "./components/MovieInitializer";
 import Similar from "./components/Similar";
 import SkeletonLoad from "./components/SkeletonLoad";
 import Footer from "@/components/Footer";
+import Spinner from "@/components/Spinner";
+
 
 const Page = async ({ params }) => {
   const resolvedParams = await params;
@@ -31,16 +33,18 @@ const Page = async ({ params }) => {
 
   return (
     <>
-      <MovieInitializer data={response} />
-      <div className="relative">
-        <BgImage path={response.details?.backdrop_path} />
-        <div className="md:mt-15 mt-[80px] z-50 relative">
-          <Embed video={response.videos} title={title} />
-          <Hero />
-          <Similar data={response.similar?.results} type={type} />
-          <Footer />
+      <Suspense fallback={<Spinner />}>
+        <MovieInitializer data={response} />
+        <div className="relative">
+          <BgImage path={response.details?.backdrop_path} />
+          <div className="md:mt-15 mt-[80px] z-50 relative">
+            <Embed video={response.videos} title={title} />
+            <Hero />
+            <Similar data={response.similar?.results} type={type} />
+            <Footer />
+          </div>
         </div>
-      </div>
+      </Suspense>
     </>
   );
 };
