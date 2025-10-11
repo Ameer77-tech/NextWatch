@@ -19,6 +19,7 @@ const Embed = ({ video, title }) => {
       <h1
         className={`${JetBrainsMono.className} 
     text-4xl md:text-6xl 
+    text-center
     font-extrabold 
     tracking-tight 
     text-transparent 

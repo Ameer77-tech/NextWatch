@@ -1,6 +1,11 @@
 "use server";
 
-const fetchWithRetry = async (url, options = {}, retries = 3, delayMs = 500) => {
+const fetchWithRetry = async (
+  url,
+  options = {},
+  retries = 3,
+  delayMs = 500
+) => {
   for (let i = 0; i < retries; i++) {
     try {
       const res = await fetch(url, options);
@@ -18,7 +23,11 @@ export const fetchShow = async (type, id) => {
   if (!type || !id) throw new Error("fetchShow: missing type or id");
 
   const tmdbType =
-    type === "movies" || type === "upcoming" || type === "newreleases" || type === "toprated" || type === "popular"
+    type === "movies" ||
+    type === "upcoming" ||
+    type === "newreleases" ||
+    type === "toprated" ||
+    type === "popular"
       ? "movie"
       : type === "tvshows"
       ? "tv"
@@ -33,13 +42,25 @@ export const fetchShow = async (type, id) => {
 
   if (!headers.Authorization) throw new Error("TMDB_API_KEY is not defined");
 
-  const baseUrl = `https://api.themoviedb.org/3/${tmdbType}/${id}`;
+  const baseUrl = `${process.env.TMDB_URL}/3/${tmdbType}/${id}`;
   try {
     const [details, credits, videos, similar] = await Promise.all([
-      fetchWithRetry(`${baseUrl}?language=en-US`, { headers, next: { revalidate: 3600 } }),
-      fetchWithRetry(`${baseUrl}/credits?language=en-US`, { headers, next: { revalidate: 3600 } }),
-      fetchWithRetry(`${baseUrl}/videos?language=en-US`, { headers, next: { revalidate: 3600 } }),
-      fetchWithRetry(`${baseUrl}/similar?language=en-US`, { headers, next: { revalidate: 3600 } }),
+      fetchWithRetry(`${baseUrl}?language=en-US`, {
+        headers,
+        next: { revalidate: 3600 },
+      }),
+      fetchWithRetry(`${baseUrl}/credits?language=en-US`, {
+        headers,
+        next: { revalidate: 3600 },
+      }),
+      fetchWithRetry(`${baseUrl}/videos?language=en-US`, {
+        headers,
+        next: { revalidate: 3600 },
+      }),
+      fetchWithRetry(`${baseUrl}/similar?language=en-US`, {
+        headers,
+        next: { revalidate: 3600 },
+      }),
     ]);
 
     return { details, credits, videos, similar };

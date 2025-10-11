@@ -1,13 +1,15 @@
 "use client";
 import { useMovieStore } from "@/contexts/MovieStore";
 import { AspectRatio } from "@radix-ui/react-aspect-ratio";
+import clsx from "clsx";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 
 const Hero = () => {
   const details = useMovieStore((s) => s.details) || {};
   const credits = useMovieStore((s) => s.credits) || {};
+  const [expanded, setexpanded] = useState(false);
 
   const sortedCast = (credits?.cast || [])
     .slice()
@@ -104,9 +106,14 @@ const Hero = () => {
             </div>
           </div>
 
-          {/* Overview */}
           {details.overview && (
-            <p className="text-sm md:text-base text-white/85 line-clamp-4">
+            <p
+              onClick={() => setexpanded((prev) => !prev)}
+              className={clsx(
+                "text-sm md:text-base text-white/85 transition-all ease duration-300",
+                expanded ? "" : "line-clamp-4"
+              )}
+            >
               {details.overview}
             </p>
           )}

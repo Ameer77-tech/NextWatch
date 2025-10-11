@@ -1,16 +1,18 @@
 export const metaData = {
   title: "NextWatch - Movie Trailers & Info",
-  description: "Watch the latest movie trailers, explore upcoming releases, and discover trending films on NextWatch.",
+  description:
+    "Watch the latest movie trailers, explore upcoming releases, and discover trending films on NextWatch.",
   keywords: ["movies", "trailers", "NextWatch", "cinema", "films"],
   authors: [{ name: "Ameer Shaik" }],
   openGraph: {
     title: "NextWatch - Movie Trailers & Info",
-    description: "Watch the latest movie trailers, explore upcoming releases, and discover trending films.",
-    url: "http:localhost:3000",
+    description:
+      "Watch the latest movie trailers, explore upcoming releases, and discover trending films.",
+    url: "https://next-watch-coral.vercel.app",
     siteName: "NextWatch",
     images: [
       {
-        url: "/favicon.png", 
+        url: "/favicon.png",
         width: 800,
         height: 600,
         alt: "NextWatch Logo",
