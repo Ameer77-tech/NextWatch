@@ -10,7 +10,7 @@ const ActiveSlide = ({ length, activeIndex, setActiveIndex }) => {
           onClick={() => setActiveIndex(index)}
           key={index}
           className={clsx(
-            "hidden md:block md:w-3 md:h-3 rounded-full hover:scale-150",
+            "hidden md:block md:w-4 md:h-4 rounded-full hover:scale-150 hover:bg-accent/70 transition-all ease cursor-grabbing",
             activeIndex === index ? "bg-primary scale-125" : "bg-popover"
           )}
         ></div>

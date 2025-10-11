@@ -32,12 +32,13 @@ const Footer = () => {
             <Button variant="default">Submit</Button>
           </div>
         </div>
-
-        {/* Social Links */}
         <div className="flex flex-col gap-2">
           <p className="text-sm text-gray-500">Socials</p>
           <div className="flex gap-4 text-gray-400">
-            <a href="https://www.linkedin.com/in/Ameer Shaik" target="_blank">
+            <a
+              href="https://www.linkedin.com/in/ameer-shaik-55b106364"
+              target="_blank"
+            >
               <FaLinkedin size={20} />
             </a>
             <a href="https://github.com/Ameer77-tech" target="_blank">
@@ -46,8 +47,6 @@ const Footer = () => {
           </div>
         </div>
       </div>
-
-      {/* Bottom Text */}
       <div className="mt-8 text-center text-xs text-gray-600">
         <p>© 2025 NextWatch. All rights reserved.</p>
         <p className="mt-1">

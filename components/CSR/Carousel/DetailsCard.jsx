@@ -9,7 +9,7 @@ const DetailsCard = ({ slideIndex, Trending }) => {
     return null;
   }
   return (
-    <div className="bg-secondary px-5 py-2 z-90 absolute bottom-5 left-1/2 -translate-x-1/2 w-5/6 h-[130px] rounded-4xl flex flex-col justify-center">
+    <div className="bg-secondary/90 px-5 py-2 z-90 absolute bottom-5 left-1/2 -translate-x-1/2 w-5/6 h-[130px] rounded-4xl flex flex-col justify-center">
       <p className="text-xs tracking-wide opacity-80">TRENDING</p>
       <h1 className="text-md max-w-3/4 text-wrap">
         {Trending[slideIndex]?.name || Trending[slideIndex]?.title}
