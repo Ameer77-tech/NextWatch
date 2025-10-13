@@ -1,14 +1,12 @@
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
 import { JetBrainsMono } from "@/public/fonts/JetBrains";
 import Image from "next/image";
 import { FaLinkedin, FaGithub } from "react-icons/fa";
+import Submit from "./Submit";
 
 const Footer = () => {
   return (
     <footer className="bg-background/50 text-gray-400 py-10 px-6 border-t border-gray-800">
       <div className="max-w-6xl mx-auto flex flex-col md:flex-row md:justify-between gap-8">
-        {/* Logo & Branding */}
         <div className="flex flex-col gap-2">
           <div className="flex items-center">
             <Image src="/favicon.png" alt="logo" width={40} height={40} />
@@ -24,13 +22,7 @@ const Footer = () => {
         </div>
         <div className="flex flex-col gap-2">
           <p className="text-sm text-gray-500">Feedback</p>
-          <div className="flex gap-2">
-            <Input
-              placeholder="Tell Me Your Experience"
-              className="bg-gray-900 border-gray-700 text-white"
-            />
-            <Button variant="default">Submit</Button>
-          </div>
+          <Submit />
         </div>
         <div className="flex flex-col gap-2">
           <p className="text-sm text-gray-500">Socials</p>
