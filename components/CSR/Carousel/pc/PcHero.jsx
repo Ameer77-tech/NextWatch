@@ -1,5 +1,5 @@
 "use client";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { motion, AnimatePresence } from "motion/react";
 import Image from "next/image";
 import Arrows from "@/components/Arrows";
@@ -13,8 +13,14 @@ const PcHero = () => {
   const trending = useHomeData((s) => s.Trending) || [];
   const [slideIndex, setSlideIndex] = useState(0);
   const [type, setType] = useState("");
+
+  const intervalRef = useRef(null);
+
+  // Determine type based on media_type
   useEffect(() => {
-    switch (trending[slideIndex]?.media_type) {
+    if (!trending[slideIndex]) return;
+
+    switch (trending[slideIndex].media_type) {
       case "movie":
         setType("movies");
         break;
@@ -22,21 +28,24 @@ const PcHero = () => {
         setType("tvshows");
         break;
       default:
-        console.log("Invalid Type");
+        setType("");
+        console.warn("Invalid Type");
         break;
     }
   }, [trending, slideIndex]);
 
-  // useEffect(() => {
-  //   const interval = setInterval(() => {
-  //     setSlideIndex((prev) => (prev === trending.length - 1 ? 0 : prev + 1));
-  //   }, 6000);
+  // Auto-slide interval
+  useEffect(() => {
+    if (!trending.length) return;
 
-  //   return () => {
-  //     clearInterval(interval);
-  //   };
-  // }, [trending.length]);
+    intervalRef.current = setInterval(() => {
+      setSlideIndex((prev) => (prev === trending.length - 1 ? 0 : prev + 1));
+    }, 6000);
 
+    return () => clearInterval(intervalRef.current);
+  }, [trending.length]);
+
+  // Manual next/prev handlers
   const handleNext = () => {
     setSlideIndex((prev) => (prev === trending.length - 1 ? 0 : prev + 1));
   };
@@ -49,13 +58,14 @@ const PcHero = () => {
     initial: { scale: 0.5 },
     animate: { scale: 1 },
   };
+
   if (!trending || trending.length === 0)
     return (
       <div className="hidden md:flex flex-col space-y-3 z-100">
         <Skeleton className="h-100 w-full rounded-xl" />
-        <div className="space-y-2 ">
+        <div className="space-y-2">
           <Skeleton className="h-4 w-full" />
-          <Skeleton className="h-4 w-full"></Skeleton>
+          <Skeleton className="h-4 w-full" />
         </div>
       </div>
     );
@@ -64,18 +74,15 @@ const PcHero = () => {
     <div className="hidden md:block relative overflow-hidden">
       <motion.div
         animate={{ x: `-${slideIndex * 100}%` }}
-        transition={{
-          ease: "easeInOut",
-          duration: 0.3,
-        }}
+        transition={{ ease: "easeInOut", duration: 0.3 }}
         className="flex md:min-h-screen relative"
       >
         {trending.map((movie) => (
           <div className="flex-shrink-0 w-full min-h-screen" key={movie.id}>
             <div
               className={`relative w-full h-full ${
-                movie.backdrop_path && "flex justify-center items-center"
-              }}`}
+                movie.backdrop_path ? "flex justify-center items-center" : ""
+              }`}
             >
               {movie.backdrop_path ? (
                 <Image
@@ -138,14 +145,14 @@ const PcHero = () => {
                 variant="secondary"
                 className="flex items-center justify-center cursor-pointer"
               >
-                <p>More Info</p>{" "}
-                <div>
-                  <Info />
-                </div>
+                <p>More Info</p>
+                <Info />
               </Button>
             </Link>
           </div>
         </div>
+
+        {/* Poster */}
         <AnimatePresence mode="wait">
           <motion.div
             key={slideIndex}
