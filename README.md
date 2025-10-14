@@ -39,8 +39,8 @@
 <h2>Getting Started 🚀</h2>
 <ol>
   <li><strong>Clone the repository:</strong>
-    <pre><code>git clone https://github.com/yourusername/next-watch.git
-cd next-watch</code></pre>
+    <pre><code>git clone https://github.com/yourusername/NextWatch.git
+cd NextWatch</code></pre>
   </li>
   <li><strong>Install dependencies:</strong>
     <pre><code>npm install</code></pre>
