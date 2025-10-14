@@ -4,7 +4,6 @@ import { motion } from "motion/react";
 import { useEffect, useRef, useState } from "react";
 import MovieCard from "./MovieCard";
 import { useHomeData } from "@/contexts/HomeData";
-import { Skeleton } from "@/components/ui/skeleton";
 import Arrows from "@/components/Arrows";
 import PopularSkeleton from "./Skeleton";
 
@@ -22,7 +21,7 @@ const Container = () => {
     visible: {
       opacity: 1,
       transition: {
-        staggerChildren: 0.2,
+        staggerChildren: 0.01,
       },
     },
   };
@@ -73,6 +72,7 @@ const Container = () => {
         whileInView="visible"
         viewport={{
           once: true,
+          amount : 0.2
         }}
       >
         {Popular.map((movie) => (

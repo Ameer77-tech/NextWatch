@@ -11,7 +11,7 @@ const Navigation = ({ page, type }) => {
         {page > 1 ? (
           <Link href={`${type}?page=${page - 1}`} className="flex items-center">
             <ArrowLeft />
-            <Button variant="ghost" className="cursor-pointer">
+            <Button variant="link" className="cursor-pointer">
               prevPage
             </Button>
           </Link>
@@ -28,7 +28,7 @@ const Navigation = ({ page, type }) => {
       <div>
         {page < 500 ? (
           <Link href={`${type}?page=${page + 1}`} className="flex items-center">
-            <Button variant="ghost" className="cursor-pointer">
+            <Button variant="link" className="cursor-pointer">
               nextPage
             </Button>
             <ArrowRight />

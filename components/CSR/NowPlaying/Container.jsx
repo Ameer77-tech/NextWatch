@@ -71,6 +71,7 @@ const Container = () => {
         whileInView="visible"
         viewport={{
           once: true,
+          amount: 0.2,
         }}
       >
         {NowPlaying.map((movie) => (

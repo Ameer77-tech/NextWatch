@@ -32,7 +32,7 @@ const MovieCard = ({ name, source, type, id }) => {
         whileTap={{
           scale: 0.95,
         }}
-        className="flex flex-col w-full rounded-xl select-none bg-secondary"
+        className="relative w-full rounded-xl select-none"
       >
         <Link href={`/category/${type}/${id}`}>
           <AspectRatio
@@ -96,7 +96,7 @@ const MovieCard = ({ name, source, type, id }) => {
             </AnimatePresence>
           </AspectRatio>
         </Link>
-        <div className="text-center font-bold md:font-semibold bg-background md:text-md text-sm p-5 md:tracking-wider tracking-wide">
+        <div className="text-center font-bold md:font-semibold bg-background md:text-sm text-xs p-5 md:tracking-wider tracking-wide">
           {name}
         </div>
       </motion.div>

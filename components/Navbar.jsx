@@ -39,8 +39,6 @@ const Navbar = () => {
   const isActive = (tabHref) => {
     const tabUrl = new URL(tabHref, "http://localhost");
     const tabPathname = tabUrl.pathname;
-
-    // match purely by pathname
     if (pathname === "/" && tabPathname === "/") return true;
     if (
       pathname.startsWith("/category/movies") &&
@@ -118,7 +116,6 @@ const Navbar = () => {
         )}
       </AnimatePresence>
 
-      {/* MOBILE DROPDOWN */}
       <AnimatePresence>
         {isOpen && (
           <motion.div
@@ -137,7 +134,7 @@ const Navbar = () => {
               style={{
                 top: `${navSize}px`,
               }}
-              className="absolute flex flex-col space-y-5 left-0 h-auto p-5 w-full bg-background border-t border-white/10 rounded-t-2xl"
+              className="absolute flex flex-col space-y-5 left-0 h-auto p-5 w-full bg-background"
             >
               {tabs.map((tab, idx) => (
                 <Link

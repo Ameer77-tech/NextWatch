@@ -5,12 +5,13 @@ import Link from "next/link";
 
 const Heading = ({ name }) => {
   return (
-    <div className="flex justify-between items-center py-6 px-8 bg-card  rounded-lg shadow-lg">
+    <div className="flex justify-between items-center md:py-6 rounded-lg">
+      {/* Heading */}
       <h1
-        className={`relative text-lg md:text-2xl z-10 font-bold text-primary-foreground ${JetBrainsMono.className}`}
+        className={`relative text-lg md:text-3xl font-semibold text-white tracking-tight ${JetBrainsMono.className}`}
       >
-        <span className="absolute inset-0 bg-gradient-to-r -z-10 from-primary to-secondary w-1/2 h-full rounded-md"></span>
-        <p className="z-10 ">{name}</p>
+        <span className="absolute left-0 bottom-0 h-[2px] w-1/2 bg-gradient-to-r from-primary to-secondary rounded-full transition-all duration-500 group-hover:w-full"></span>
+        <p className="relative z-10">{name}</p>
       </h1>
 
       {/* Button */}
@@ -22,10 +23,24 @@ const Heading = ({ name }) => {
         }?page=1`}
       >
         <Button
-          variant="destructive"
-          className="cursor-pointer hover:bg-destructive/90 transition-colors"
+          variant="ghost"
+          className="group flex items-center gap-2 px-4 py-2 rounded-md text-sm font-medium text-white/90 border border-white/10 focus:text-primary focus:border-primary/40 hover:border-primary/40 hover:text-primary transition-all duration-300 hover:bg-transparent active:scale-[0.97]"
         >
-          See All
+          <span>See All</span>
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1 group-focus:translate-x-1 text-primary"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+            strokeWidth={2}
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              d="M9 5l7 7-7 7"
+            />
+          </svg>
         </Button>
       </Link>
     </div>
