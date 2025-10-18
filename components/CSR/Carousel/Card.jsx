@@ -4,6 +4,7 @@ import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import { Info } from "lucide-react";
 import Link from "next/link";
+import BrokenImage from "@/public/broken-image.png";
 
 const Card = ({ movie }) => {
   return (
@@ -12,11 +13,14 @@ const Card = ({ movie }) => {
         src={
           movie?.poster_path
             ? `https://image.tmdb.org/t/p/original${movie?.poster_path}`
-            : ""
+            : BrokenImage
         }
         alt={movie?.title || "Poster"}
         fill
         className="rounded-[50px] object-cover h-full"
+        onError={(e) => {
+          e.currentTarget.src = BrokenImage.src;
+        }}
       />
       <Link
         href={`/category/${

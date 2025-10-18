@@ -3,6 +3,7 @@ import Image from "next/image";
 import { AnimatePresence, motion } from "motion/react";
 import { Info } from "lucide-react";
 import Link from "next/link";
+import BrokenImage from "@/public/broken-image.png";
 
 const MovieCard = ({ cardRef, movie }) => {
   const [show, setShow] = useState(false);
@@ -43,11 +44,14 @@ const MovieCard = ({ cardRef, movie }) => {
             src={
               movie?.poster_path
                 ? `https://image.tmdb.org/t/p/original${movie.poster_path}`
-                : 
+                : BrokenImage
             }
             alt="image"
             fill
             className="rounded-t-lg object-cover"
+            onError={(e) => {
+              e.currentTarget.src = BrokenImage.src; 
+            }}
           />
           <AnimatePresence>
             {show && (
