@@ -1,7 +1,6 @@
 "use client";
 import React from "react";
 import Image from "next/image";
-import mockImage from "@/app/assets/mock.jpg";
 import { Button } from "@/components/ui/button";
 import { Info } from "lucide-react";
 import Link from "next/link";
@@ -13,7 +12,7 @@ const Card = ({ movie }) => {
         src={
           movie?.poster_path
             ? `https://image.tmdb.org/t/p/original${movie?.poster_path}`
-            : mockImage
+            : ""
         }
         alt={movie?.title || "Poster"}
         fill

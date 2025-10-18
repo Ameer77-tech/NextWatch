@@ -42,7 +42,7 @@ const MovieCard = ({ cardRef, movie }) => {
             src={
               movie?.poster_path
                 ? `https://image.tmdb.org/t/p/original${movie.poster_path}`
-                : mockImage
+                : ""
             }
             alt="image"
             fill
