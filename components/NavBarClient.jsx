@@ -1,9 +1,13 @@
 "use client";
-import React from "react";
+import React, { Suspense } from "react";
 import Navbar from "./Navbar";
 
 const NavBarClient = () => {
-  return <Navbar />;
+  return (
+    <Suspense fallback={""}>
+      <Navbar />
+    </Suspense>
+  );
 };
 
 export default NavBarClient;
