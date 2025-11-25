@@ -87,7 +87,7 @@ const MovieCard = ({ cardRef, movie }) => {
           </AnimatePresence>
         </motion.div>
       </Link>
-      <div className="md:h-25 h-20 w-full bg-secondary p-2 flex flex-col justify-evenly">
+      <div className="md:h-25 h-20 w-full bg-secondary p-2 flex flex-col justify-evenly overflow-scroll">
         <h1 className="text-xs md:text-sm font-semibold">
           {movie?.name || movie?.title}
         </h1>

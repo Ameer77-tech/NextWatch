@@ -6,7 +6,6 @@ sgMail.setApiKey(process.env.EMAIL_KEY);
 export async function POST(req) {
   try {
     const { message } = await req.json();
-
     const email = {
       to: process.env.ADMIN,
       from: {
@@ -48,9 +47,9 @@ export async function POST(req) {
 
     return Response.json({ success: true });
   } catch (error) {
-    console.error("Error sending email:", error);
+    console.log("Error sending email:", error.response.body.errors[0].message);
     return Response.json(
-      { success: false, error: error.message },
+      { success: false, error: error.response.body.errors[0].message },
       { status: 500 }
     );
   }

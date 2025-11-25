@@ -40,6 +40,13 @@ const Submit = () => {
         const nextAllowed = Date.now() + 5 * 60 * 1000; // 5 mins
         localStorage.setItem("feedbackCooldown", nextAllowed.toString());
         setCooldown(5 * 60);
+      } else {
+        const response = await res.json();
+        alert(response.error);
+        setMessage("");
+        const nextAllowed = Date.now() + 5 * 60 * 1000; // 5 mins
+        localStorage.setItem("feedbackCooldown", nextAllowed.toString());
+        setCooldown(5 * 60);
       }
     } catch (err) {
       alert("Error");
